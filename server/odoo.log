@@ -1,0 +1,8 @@
+2025-07-04 08:19:48,296 4632 INFO ? odoo: Odoo version 18.0-20250704 
+2025-07-04 08:19:48,296 4632 INFO ? odoo: Using configuration file at D:\odoo18\server\odoo.conf 
+2025-07-04 08:19:48,296 4632 INFO ? odoo: addons paths: ['D:\\odoo18\\server\\odoo\\addons', 'd:\\odoo18\\sessions\\addons\\18.0', 'd:\\odoo18\\server\\odoo\\addons'] 
+2025-07-04 08:19:48,296 4632 INFO ? odoo: database: openpg@localhost:5432 
+2025-07-04 08:19:49,190 4632 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at wkhtmltopdf.exe 
+2025-07-04 08:19:49,221 4632 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-07-04 08:19:50,540 4632 INFO ? odoo.service.server: Initiating shutdown 
+2025-07-04 08:19:50,540 4632 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
