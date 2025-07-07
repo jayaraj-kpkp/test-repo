@@ -21,7 +21,8 @@ class SpreadsheetDashboard(models.Model):
 
     def get_readonly_dashboard(self):
         self.ensure_one()
-        snapshot = json.loads(self.spreadsheet_data)
+        snapshot = json.loads(self.spreadsheet_data or '{}')
+
         if self._dashboard_is_empty() and self.sample_dashboard_file_path:
             sample_data = self._get_sample_dashboard()
             if sample_data:
