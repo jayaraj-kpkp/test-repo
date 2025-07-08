@@ -1,14 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
-    <xpath expr="//div[@class='row']" position="replace">
-      <div class="row">
-        <div class="col-12" style="text-align:center;">
-          <h2 style="color:navy;">My Custom Invoice Template</h2>
-          <p>This is a test replacement to confirm everything is working.</p>
-          <p>Customer: <span t-field="o.partner_id.name"/></p>
-          <p>Invoice Date: <span t-field="o.invoice_date"/></p>
-          <p>Total: <span t-field="o.amount_total"/></p>
+    <!-- Replace everything inside the main <div class="page"> -->
+    <xpath expr="//div[@class='page']" position="replace">
+      <div class="page">
+        <!-- HEADER -->
+        <div class="header-container" style="text-align:center; border-bottom:1px solid #000; padding-bottom:10px;">
+          <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo" style="max-height:80px;"/>
+
+          <h2 style="margin:0; font-weight:bold;">شركة SAMEER SHARAF AL OTAIBI TRADING COMPANY</h2>
+          <h3 style="margin:0;">SAMEER SHARAF AL OTAIBI TRADING COMPANY</h3>
+          <p>
+            CR: 4030111344 | VAT: 300648476700003<br/>
+            Address, Saudi Arabia
+          </p>
+          <h3 style="border-top:1px solid #000; margin-top:10px; padding-top:5px;">
+            Tax Invoice / الفاتورة الضريبية
+          </h3>
+        </div>
+
+        <!-- CUSTOMER + DATE INFO -->
+        <div style="margin-top:10px;">
+          <table width="100%" style="font-size:12px;">
+            <tr>
+              <td><strong>Sold To:</strong><br/><span t-field="o.partner_id.name"/></td>
+              <td><strong>VAT No:</strong><br/><span t-field="o.partner_id.vat"/></td>
+              <td><strong>Invoice No:</strong><br/><span t-field="o.name"/></td>
+              <td><strong>Date:</strong><br/><span t-field="o.invoice_date"/></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- LINES TABLE -->
+        <table class="invoice-table" width="100%" style="margin-top:10px; border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th>S/N</th>
+              <th>Description</th>
+              <th>UoM</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Discount %</th>
+              <th>Tax %</th>
+              <th>VAT Amt</th>
+              <th>Line Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr t-foreach="o.invoice_line_ids" t-as="line">
+              <td><span t-esc="line.sequence or ''"/></td>
+              <td><span t-esc="line.name"/></td>
+              <td><span t-esc="line.product_uom_id.name"/></td>
+              <td><span t-esc="line.quantity"/></td>
+              <td><span t-esc="line.price_unit"/></td>
+              <td><span t-esc="line.discount"/></td>
+              <td><span t-esc="','.join([t.name for t in line.tax_ids])"/></td>
+              <td><span t-esc="line.price_total - line.price_subtotal"/></td>
+              <td><span t-esc="line.price_total"/></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- TOTALS -->
+        <table width="100%" style="margin-top:10px; font-size:12px;">
+          <tr>
+            <td/>
+            <td>
+              <table style="border:1px solid #000; width:300px;">
+                <tr><td>Subtotal</td><td><span t-esc="o.amount_untaxed"/></td></tr>
+                <tr><td>Tax</td><td><span t-esc="o.amount_tax"/></td></tr>
+                <tr><td><strong>Total</strong></td><td><strong><span t-esc="o.amount_total"/></strong></td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <!-- FOOTER -->
+        <div style="margin-top:20px; font-size:12px;">
+          <p>Bank Details: IBAN SA291000001076836600010</p>
+          <p>Received by: _____________________</p>
         </div>
       </div>
     </xpath>
