@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+
+    <!-- 1️⃣ HEADER WITH COMPANY INFO -->
+    <xpath expr="//div[@class='header']" position="replace">
+      <div style="text-align:center;">
+        <h2 style="margin-bottom:0; font-size:18px;">
+          شركة سمير شرف العتيبي التجارية<br/>
+          SAMEER SHARAF AL OTAIBI TRADING COMPANY
+        </h2>
+        <div style="font-size:12px;">
+          CR: 4030113154 | VAT: 30084647800003<br/>
+          Jeddah 22334 - Saudi Arabia<br/>
+          Tel: 0501223683<br/>
+          Email: sso@sharafindustrial.com
+        </div>
+        <div style="margin-top:5px; font-weight:bold;">
+          Tax Invoice / فاتورة ضريبية
+        </div>
+      </div>
+    </xpath>
+
+    <!-- 2️⃣ TABLE HEADER BILINGUAL -->
+    <xpath expr="//thead" position="replace">
+      <thead>
+        <tr>
+          <th>S.N</th>
+          <th>Description / الوصف</th>
+          <th>Qty / الكمية</th>
+          <th>Unit Price / سعر الوحدة</th>
+          <th>Discount / الخصم</th>
+          <th>VAT % / ضريبة القيمة المضافة</th>
+          <th>Total / الإجمالي</th>
+        </tr>
+      </thead>
+    </xpath>
+
+    <!-- 3️⃣ QR CODE AND FOOTER INFO -->
+    <xpath expr="//div[@class='footer']" position="replace">
+      <div class="footer" style="margin-top:20px; font-size:12px;">
+        <table style="width:100%;">
+          <tr>
+            <td style="text-align:center;">
+              <div>
+                <strong>Received By:</strong>
+                <div style="margin-top:20px;">___________________________</div>
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <img t-att-src="'/report/barcode/?type=QR&value=' + o.name" style="width:120px; height:120px;"/>
+              <div>Scan QR Code</div>
+            </td>
+            <td style="text-align:center;">
+              <img src="/your_module/static/src/img/stamp.png" style="width:100px;"/>
+              <div>Company Stamp</div>
+            </td>
+          </tr>
+        </table>
+
+        <div style="margin-top:15px;">
+          <strong>Bank Details:</strong><br/>
+          SNB Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.<br/>
+          IBAN: SA291000001076836600014
+        </div>
+      </div>
+    </xpath>
+
+  </template>
+</odoo>
