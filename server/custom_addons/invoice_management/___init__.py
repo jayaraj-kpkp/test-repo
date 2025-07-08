@@ -1,4 +1,0 @@
-{
-    'name':'invoice_management'
-
-}
