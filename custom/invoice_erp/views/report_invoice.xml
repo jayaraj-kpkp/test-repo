@@ -1,110 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
-
-    <!-- REPLACE THE ENTIRE PAGE CONTENT -->
-    <xpath expr="//div[@class='page']" position="replace">
-      <div class="page" style="font-family: Arial;">
-
-        <!-- HEADER -->
-        <div style="text-align:center;">
-          <h2 style="margin-bottom:0; font-size:18px;">
-            شركة سمير شرف العتيبي التجارية<br/>
-            SAMEER SHARAF AL OTAIBI TRADING COMPANY
-          </h2>
-          <div style="font-size:12px;">
-            CR: 4030113154 | VAT: 30084647800003<br/>
-            Jeddah 22334 - Saudi Arabia<br/>
-            Tel: 0501223683<br/>
-            Email: sso@sharafindustrial.com
-          </div>
-          <div style="margin-top:5px; font-weight:bold;">
-            Tax Invoice / فاتورة ضريبية
-          </div>
+    <xpath expr="//div[@class='row']" position="replace">
+      <div class="row">
+        <div class="col-12" style="text-align:center;">
+          <h2 style="color:navy;">My Custom Invoice Template</h2>
+          <p>This is a test replacement to confirm everything is working.</p>
+          <p>Customer: <span t-field="o.partner_id.name"/></p>
+          <p>Invoice Date: <span t-field="o.invoice_date"/></p>
+          <p>Total: <span t-field="o.amount_total"/></p>
         </div>
-
-        <!-- CUSTOMER AND INVOICE INFO -->
-        <div style="margin-top:20px;">
-          <table style="width:100%; font-size:12px;">
-            <tr>
-              <td><strong>Customer:</strong> <t t-esc="o.partner_id.name"/></td>
-              <td><strong>VAT No:</strong> <t t-esc="o.partner_id.vat"/></td>
-            </tr>
-            <tr>
-              <td><strong>Invoice Date:</strong> <t t-esc="o.invoice_date"/></td>
-              <td><strong>Invoice No:</strong> <t t-esc="o.name"/></td>
-            </tr>
-          </table>
-        </div>
-
-        <!-- TABLE HEADERS -->
-        <table style="width:100%; margin-top:20px; border:1px solid #000; border-collapse:collapse; font-size:11px;">
-          <thead>
-            <tr>
-              <th style="border:1px solid #000;">#</th>
-              <th style="border:1px solid #000;">Description / الوصف</th>
-              <th style="border:1px solid #000;">Qty / الكمية</th>
-              <th style="border:1px solid #000;">Unit Price</th>
-              <th style="border:1px solid #000;">Taxes</th>
-              <th style="border:1px solid #000;">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr t-foreach="o.invoice_line_ids" t-as="line">
-              <td style="border:1px solid #000;">
-                <t t-esc="line.sequence"/>
-              </td>
-              <td style="border:1px solid #000;">
-                <t t-esc="line.name"/>
-              </td>
-              <td style="border:1px solid #000;">
-                <t t-esc="line.quantity"/>
-              </td>
-              <td style="border:1px solid #000;">
-                <t t-esc="line.price_unit"/>
-              </td>
-              <td style="border:1px solid #000;">
-                <t t-esc="', '.join([tax.name for tax in line.tax_ids])"/>
-              </td>
-              <td style="border:1px solid #000;">
-                <t t-esc="line.price_subtotal"/>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- TOTALS -->
-        <div style="margin-top:10px; text-align:right;">
-          <strong>Total Without Tax:</strong> <t t-esc="o.amount_untaxed"/><br/>
-          <strong>Tax:</strong> <t t-esc="o.amount_tax"/><br/>
-          <strong>Total:</strong> <t t-esc="o.amount_total"/>
-        </div>
-
-        <!-- QR Code and Bank Details -->
-        <div style="margin-top:15px; font-size:12px;">
-          <table style="width:100%;">
-            <tr>
-              <td style="text-align:center;">
-                <strong>Received By:</strong>
-                <div style="margin-top:20px;">___________________________</div>
-              </td>
-              <td style="text-align:center;">
-                <img t-att-src="'/report/barcode/?type=QR&amp;value=' + o.name" style="width:120px; height:120px;"/>
-                <div>Scan QR Code</div>
-              </td>
-              <td style="text-align:center;">
-                <img src="/your_module/static/src/img/stamp.png" style="width:100px;"/>
-                <div>Company Stamp</div>
-              </td>
-            </tr>
-          </table>
-          <div style="margin-top:10px;">
-            <strong>Bank Details:</strong><br/>
-            SNB Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.<br/>
-            IBAN: SA291000001076836600014
-          </div>
-        </div>
-
       </div>
     </xpath>
   </template>
