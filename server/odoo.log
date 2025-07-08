@@ -6,3 +6,12 @@
 2025-07-04 08:19:49,221 4632 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
 2025-07-04 08:19:50,540 4632 INFO ? odoo.service.server: Initiating shutdown 
 2025-07-04 08:19:50,540 4632 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-07-04 08:19:58,417 10804 INFO ? odoo: Odoo version 18.0-20250704 
+2025-07-04 08:19:58,417 10804 INFO ? odoo: Using configuration file at D:\odoo18\server\odoo.conf 
+2025-07-04 08:19:58,417 10804 INFO ? odoo: addons paths: ['D:\\odoo18\\server\\odoo\\addons', 'd:\\odoo18\\sessions\\addons\\18.0', 'd:\\odoo18\\server\\odoo\\addons'] 
+2025-07-04 08:19:58,417 10804 INFO ? odoo: database: openpg@localhost:5432 
+2025-07-04 08:19:58,605 10804 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at D:\odoo18\thirdparty\wkhtmltopdf.exe 
+2025-07-04 08:19:58,621 10804 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-07-04 08:19:58,985 10804 INFO ? odoo.service.server: HTTP service (werkzeug) running on DESKTOP-NAM5300:8069 
+2025-07-04 08:20:03,048 10804 INFO ? odoo.sql_db: Connection to the database failed 
+2025-07-04 08:20:07,082 10804 INFO ? odoo.sql_db: Connection to the database failed 
