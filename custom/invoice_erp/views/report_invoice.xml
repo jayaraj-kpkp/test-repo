@@ -48,7 +48,7 @@
               </div>
             </td>
             <td style="text-align:center;">
-              <img t-att-src="'/report/barcode/?type=QR&value=' + o.name" style="width:120px; height:120px;"/>
+              <img t-att-src="'/report/barcode/?type=QR&amp;value=' + o.name" style="width:120px; height:120px;"/>
               <div>Scan QR Code</div>
             </td>
             <td style="text-align:center;">
