@@ -10,7 +10,7 @@
 <!--          <h2 style="margin:0; font-weight:bold;">شركة SAMEER SHARAF AL OTAIBI TRADING COMPANY</h2>-->
 <!--          <h3 style="margin:0;">SAMEER SHARAF AL OTAIBI TRADING COMPANY</h3>-->
 <!--          <p>CR: 4030111344 | VAT: 300648476700003<br/>Address, Saudi Arabia</p>-->
-          <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="max-height:120px;"/>
+          <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="max-height:120px;" width="100%"/>
 
           <h3 style="border-top:1px solid #000; margin-top:10px; padding-top:5px;">Tax Invoice / الفاتورة الضريبية</h3>
         </div>
@@ -72,7 +72,7 @@
         </table>
 
         <!-- FOOTER -->
-        <div style="margin-top:20px; font-size:12px;">
+        <div style="margin-top:20px; font-size:16px;margin-left:40px">
           <p>Bank Details: IBAN SA291000001076836600010</p>
           <p>Received by: _____________________</p>
         </div>
