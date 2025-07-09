@@ -102,12 +102,6 @@
               <td><strong>Invoice No:</strong><br/><span t-field="o.name"/></td>
               <td><strong>Invoice Date:</strong><br/><span t-field="o.invoice_date"/></td>
             </tr>
-<!--            <tr>-->
-<!--              <td><strong>Delivery Note No:</strong><br/><span t-esc="o.delivery_note_no or ''"/></td>-->
-<!--              <td><strong>Delivery Date:</strong><br/><span t-esc="o.delivery_date or ''"/></td>-->
-<!--              <td><strong>P.O. Number:</strong><br/><span t-esc="o.po_number or ''"/></td>-->
-<!--              <td><strong>Payment Terms:</strong><br/><span t-esc="o.payment_term_id.name or ''"/></td>-->
-<!--            </tr>-->
           </table>
         </div>
 
@@ -139,7 +133,9 @@
               <td><span t-esc="line.quantity"/></td>
               <td><span t-esc="line.price_unit"/></td>
               <td><span t-esc="line.discount"/></td>
-              <td><span t-esc="','.join([t.amount + ' %' for t in line.tax_ids])"/></td>
+              <td>
+                <span t-esc="','.join([str(t.amount) + ' %' for t in line.tax_ids])"/>
+              </td>
               <td><span t-esc="line.price_total - line.price_subtotal"/></td>
               <td><span t-esc="line.price_total"/></td>
             </tr>
@@ -165,11 +161,6 @@
             </tr>
           </table>
         </div>
-
-<!--        &lt;!&ndash; QR CODE &ndash;&gt;-->
-<!--        <div style="margin-top:10px; text-align:left;">-->
-<!--          <img t-att-src="'/report/qr/' + str(o.id) + '?access_token=' + o.access_token" style="height:80px;"/>-->
-<!--        </div>-->
 
         <!-- FOOTER -->
         <div style="margin-top:10px; font-size:12px;">
