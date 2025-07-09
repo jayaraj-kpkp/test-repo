@@ -87,8 +87,14 @@
 
         <!-- HEADER -->
         <div class="header-container" style="text-align:center; padding-bottom:5px;">
-          <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="max-height:120px; width:100%;" />
-          <h3 style="border-top:1px solid #000; margin-top:5px; padding-top:5px;">
+<!--          <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="max-height:120px; width:100%;" />-->
+          <h1>SAMEER SHARAF AL OTAIBI TRADING COMPANY <span>شركة سمير شرف العتيبي التجارية</span></h1>
+          <h4>C.R.4030216154 <span>C.R.4030216154</span></h4>
+          <h4>VAT Regd :311299944700003 <span>VAT Regd :311299944700003</span></h4>
+           <h4>Al Anwar Centre,Showroom No.12,Baladiya Street,Jeddah 23334-Sauidi Arabia <span>Al Anwar Centre,Showroom No.12,Baladiya Street,Jeddah 23334-Sauidi Arabia</span></h4>
+           <h4>Tel : 0536122833<span>Tel : 0536122833</span></h4>
+           <h4>Email:ssaoe.jeddah@gmail.com<span>Email:ssaoe.jeddah@gmail.com</span></h4>
+          <h3 style="border-top:1px solid #000; margin-top:5px; padding-top:5px;background-color:red;">
             Tax Invoice / فاتورة ضريبية
           </h3>
         </div>
