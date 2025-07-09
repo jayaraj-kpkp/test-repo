@@ -166,10 +166,10 @@
           </table>
         </div>
 
-        <!-- QR CODE -->
-        <div style="margin-top:10px; text-align:left;">
-          <img t-att-src="'/report/qr/' + str(o.id) + '?access_token=' + o.access_token" style="height:80px;"/>
-        </div>
+<!--        &lt;!&ndash; QR CODE &ndash;&gt;-->
+<!--        <div style="margin-top:10px; text-align:left;">-->
+<!--          <img t-att-src="'/report/qr/' + str(o.id) + '?access_token=' + o.access_token" style="height:80px;"/>-->
+<!--        </div>-->
 
         <!-- FOOTER -->
         <div style="margin-top:10px; font-size:12px;">
