@@ -102,12 +102,12 @@
               <td><strong>Invoice No:</strong><br/><span t-field="o.name"/></td>
               <td><strong>Invoice Date:</strong><br/><span t-field="o.invoice_date"/></td>
             </tr>
-            <tr>
-              <td><strong>Delivery Note No:</strong><br/><span t-esc="o.delivery_note_no or ''"/></td>
-              <td><strong>Delivery Date:</strong><br/><span t-esc="o.delivery_date or ''"/></td>
-              <td><strong>P.O. Number:</strong><br/><span t-esc="o.po_number or ''"/></td>
-              <td><strong>Payment Terms:</strong><br/><span t-esc="o.payment_term_id.name or ''"/></td>
-            </tr>
+<!--            <tr>-->
+<!--              <td><strong>Delivery Note No:</strong><br/><span t-esc="o.delivery_note_no or ''"/></td>-->
+<!--              <td><strong>Delivery Date:</strong><br/><span t-esc="o.delivery_date or ''"/></td>-->
+<!--              <td><strong>P.O. Number:</strong><br/><span t-esc="o.po_number or ''"/></td>-->
+<!--              <td><strong>Payment Terms:</strong><br/><span t-esc="o.payment_term_id.name or ''"/></td>-->
+<!--            </tr>-->
           </table>
         </div>
 
