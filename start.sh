@@ -1,5 +1,6 @@
 
-exec python3 odoo-bin -c odoo.conf --log-level=debug
+exec python3 odoo-bin -c odoo.conf -i base --log-level=debug
+
 
 
 
