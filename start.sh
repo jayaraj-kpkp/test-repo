@@ -1,2 +1,1 @@
-#!/bin/bash
-exec python odoo-bin -c odoo.conf --http-port=$PORT
+python odoo-bin -c odoo.conf --init=base --http-port=$PORT
