@@ -1,4 +1,5 @@
 
 
-python3 odoo-bin -c odoo.conf -d postgresql_odoo18_new -i base --stop-after-init
+#!/bin/bash
+exec python3 odoo-bin -c odoo.conf -i base --stop-after-init
 
