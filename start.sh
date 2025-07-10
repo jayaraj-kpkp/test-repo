@@ -1,5 +1,5 @@
-
-exec python odoo-bin -c odoo.conf
+#!/usr/bin/env bash
+exec python3 odoo-bin -c odoo.conf -i base --xmlrpc-port=$PORT
 
 
 
