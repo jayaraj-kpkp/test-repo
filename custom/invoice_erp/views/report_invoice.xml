@@ -1,6 +1,6 @@
 <odoo>
   <!-- Standalone custom invoice template -->
-  <template id="report_invoice_document_custom">
+  <template id="report_invoice_document_custom" t-name="invoice_erp.report_invoice_document_custom">
     <t t-call="web.html_container">
       <t t-foreach="docs" t-as="o">
         <t t-call="web.external_layout">
