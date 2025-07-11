@@ -34,7 +34,7 @@
         "account",
     ],
     "data": [
-        "views/custom_invoice_template.xml",
+        "views/report_invoice.xml",
     ],
     "assets": {},
     "installable": True,
