@@ -10,6 +10,11 @@
     'data': [
         'views/report_invoice.xml',
     ],
+    'assets': {
+        'web.report_assets_common': [
+            'invoice_erp/static/src/css/invoice_styles.css',
+        ],
+    },
     'installable': True,
-    'application': False,
+    'application': False
 }
