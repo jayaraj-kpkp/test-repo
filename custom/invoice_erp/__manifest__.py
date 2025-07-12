@@ -7,7 +7,7 @@
     'category': 'Accounting',
     'depends': ['account'],
     'data': [
-        'views/invoice_report.xml',
+        'views/report_invoice.xml',
     ],
     'license': 'LGPL-3',
     'installable': True,
