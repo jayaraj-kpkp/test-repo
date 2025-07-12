@@ -1,12 +1,105 @@
 <odoo>
   <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
-    <xpath expr="//div[contains(@class, 'page')]" position="replace">
-      <div class="page mb-4">
-        <h1>✅ TEST OVERRIDE WORKS</h1>
+    <xpath expr="//div[@class='page']" position="replace">
+      <div class="page">
+        <!-- Header -->
+        <div class="row mt32 mb32">
+          <div class="col-6">
+            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height:80px;"/>
+            <h2 t-field="company.name"/>
+            <p t-field="company.partner_id.contact_address"/>
+            <p>Email: <span t-field="company.email"/></p>
+            <p>VAT No: <span t-esc="company.vat"/></p>
+          </div>
+          <div class="col-6 text-right">
+            <h3>Tax Invoice / فاتورة ضريبية</h3>
+            <p>Date: <span t-field="o.invoice_date"/></p>
+            <p>Invoice #: <span t-field="o.name"/></p>
+            <p>Delivery Date: <span t-esc="o.invoice_date_due"/></p>
+          </div>
+        </div>
+
+        <!-- Customer -->
+        <div class="row mb16">
+          <div class="col-6">
+            <h4>Sold to / العميل</h4>
+            <p t-field="o.partner_id.display_name"/>
+            <p t-field="o.partner_id.contact_address"/>
+            <p>VAT No: <span t-esc="o.partner_id.vat"/></p>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>UOM</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Discount</th>
+              <th>VAT %</th>
+              <th>VAT Amt</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr t-foreach="o.invoice_line_ids" t-as="line">
+              <td t-esc="line.sequence"/>
+              <td>
+                <span t-field="line.name"/>
+              </td>
+              <td t-esc="line.product_uom_id.name"/>
+              <td t-esc="line.quantity"/>
+              <td t-esc="line.price_unit"/>
+              <td t-esc="line.discount"/>%
+              <td t-esc="line.tax_ids[0].amount if line.tax_ids else '0'"/>%
+              <td t-esc="line.price_total - line.price_subtotal"/>
+              <td t-esc="line.price_subtotal"/>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Totals -->
+        <div class="row mt16">
+          <div class="col-6">
+            <p>Amount in Words: <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/></p>
+          </div>
+          <div class="col-6">
+            <table class="table table-sm">
+              <tr>
+                <th>Subtotal</th>
+                <td t-esc="o.amount_untaxed"/>
+              </tr>
+              <tr>
+                <th>VAT</th>
+                <td t-esc="o.amount_tax"/>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td t-esc="o.amount_total"/>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="mt16">
+          <p><strong>Bank Details:</strong></p>
+          <p>Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.</p>
+          <p>IBAN: SA29 1000 00 1076386600014</p>
+        </div>
+
+        <!-- Signature -->
+        <div class="mt32">
+          <p>Received By _____________________</p>
+        </div>
       </div>
     </xpath>
   </template>
 </odoo>
+
 
 
 

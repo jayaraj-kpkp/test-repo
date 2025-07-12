@@ -1,24 +1,19 @@
 {
-    'name': "invoice_erp",
+    'name': 'invoice_erp',
     'version': '1.0',
-    'summary': "Custom Invoice Template",
-    'description': "This module customizes the invoice layout.",
-    'author': "Your Name",
-    'website': "https://yourcompany.com",
+    'summary': 'Customized invoice layout with bilingual support and bank details',
+    'description': 'Overrides the standard invoice PDF report in Odoo 18 to match company format.',
+    'author': 'Your Name or Company',
     'category': 'Accounting',
     'depends': ['account'],
     'data': [
-        'views/report_invoice.xml',
-        'report/report_action.xml',
+        'views/invoice_report.xml',
     ],
-    # 'assets': {
-    #     'web.report_assets_common': [
-    #         'invoice_erp/static/src/css/invoice_styles.css',
-    #     ],
-    # },
     'installable': True,
-    'application': False
+    'application': False,
+    'auto_install': False,
 }
+
 # {
 #     "name": "Custom Invoice Layout",
 #     "version": "1.0",
