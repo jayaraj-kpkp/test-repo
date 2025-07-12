@@ -1,76 +1,8 @@
 <odoo>
   <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
-    <xpath expr="//div[@class='page mb-4']" position="replace">
+    <xpath expr="//div[hasclass('page') and hasclass('mb-4')]" position="replace">
       <div class="page mb-4">
-        <!-- ✅ YOUR CUSTOM CONTENT STARTS HERE -->
-
-        <!-- HEADER -->
-        <div class="header-container" style="text-align:center; border-bottom:1px solid #000; padding-bottom:10px;">
-          <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="max-height:120px;" width="100%"/>
-          <h3 style="border-top:1px solid #000; margin-top:10px; padding-top:5px;">Tax Invoice / الفاتورة الضريبية</h3>
-        </div>
-
-        <!-- CUSTOMER + DATE INFO -->
-        <div style="margin-top:10px;">
-          <table width="100%" style="font-size:12px;">
-            <tr>
-              <td><strong>Sold To:</strong><br/><span t-field="o.partner_id.name"/></td>
-              <td><strong>VAT No:</strong><br/><span t-field="o.partner_id.vat"/></td>
-              <td><strong>Invoice No:</strong><br/><span t-field="o.name"/></td>
-              <td><strong>Date:</strong><br/><span t-field="o.invoice_date"/></td>
-            </tr>
-          </table>
-        </div>
-
-        <!-- LINES TABLE -->
-        <table class="invoice-table" width="100%" style="margin-top:10px; border-collapse:collapse;">
-          <thead>
-            <tr>
-              <th>S/N</th>
-              <th>Description</th>
-              <th>UoM</th>
-              <th>Qty</th>
-              <th>Unit Price</th>
-              <th>Discount %</th>
-              <th>Tax %</th>
-              <th>VAT Amt</th>
-              <th>Line Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr t-foreach="o.invoice_line_ids" t-as="line">
-              <td><span t-esc="line.sequence or ''"/></td>
-              <td><span t-esc="line.name"/></td>
-              <td><span t-esc="line.product_uom_id.name"/></td>
-              <td><span t-esc="line.quantity"/></td>
-              <td><span t-esc="line.price_unit"/></td>
-              <td><span t-esc="line.discount"/></td>
-              <td><span t-esc="','.join([t.name for t in line.tax_ids])"/></td>
-              <td><span t-esc="line.price_total - line.price_subtotal"/></td>
-              <td><span t-esc="line.price_total"/></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- TOTALS -->
-        <table width="100%" style="margin-top:10px; font-size:12px;">
-          <tr>
-            <td/>
-            <td>
-              <table style="border:1px solid #000; width:300px;">
-                <tr><td>Subtotal</td><td><span t-esc="o.amount_untaxed"/></td></tr>
-                <tr><td>Tax</td><td><span t-esc="o.amount_tax"/></td></tr>
-                <tr><td><strong>Total</strong></td><td><strong><span t-esc="o.amount_total"/></strong></td></tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-
-        <!-- FOOTER -->
-        <div style="margin-top:20px; font-size:16px;margin-left:40px">
-          <p>Bank Details: IBAN SA291000001076836600010</p>
-          <p>Received by: _____________________</p>
-        </div>
+        <h1>✅ CUSTOM INVOICE TEST WORKS</h1>
       </div>
     </xpath>
   </template>
