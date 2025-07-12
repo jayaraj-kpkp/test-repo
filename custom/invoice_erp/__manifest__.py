@@ -9,6 +9,7 @@
     'depends': ['account'],
     'data': [
         'views/report_invoice.xml',
+        'report/report_action.xml',
     ],
     # 'assets': {
     #     'web.report_assets_common': [

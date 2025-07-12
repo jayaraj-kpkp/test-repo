@@ -1,8 +1,8 @@
 <odoo>
   <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
-    <xpath expr="//div[hasclass('page') and hasclass('mb-4')]" position="replace">
+    <xpath expr="//div[contains(@class, 'page')]" position="replace">
       <div class="page mb-4">
-        <h1>✅ CUSTOM INVOICE TEST WORKS</h1>
+        <h1>✅ TEST OVERRIDE WORKS</h1>
       </div>
     </xpath>
   </template>
