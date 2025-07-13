@@ -1,0 +1,275 @@
+<odoo>
+  <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+    <xpath expr="//div[contains(@class, 'page')]" position="replace">
+      <div class="page">
+        <!-- Header -->
+        <div class="row mt32 mb32">
+          <div class="col-6">
+            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height:80px;"/>
+            <h2 t-field="company.name"/>
+            <p t-field="company.partner_id.contact_address"/>
+            <p>Email: <span t-field="company.email"/></p>
+            <p>VAT No: <span t-esc="company.vat"/></p>
+          </div>
+          <div class="col-6 text-right">
+            <h3>Tax Invoice / فاتورة ضريبية</h3>
+            <p>Date: <span t-field="o.invoice_date"/></p>
+            <p>Invoice #: <span t-field="o.name"/></p>
+            <p>Delivery Date: <span t-esc="o.invoice_date_due"/></p>
+          </div>
+        </div>
+
+        <!-- Customer -->
+        <div class="row mb16">
+          <div class="col-6">
+            <h4>Sold to / العميل</h4>
+            <p t-field="o.partner_id.display_name"/>
+            <p t-field="o.partner_id.contact_address"/>
+            <p>VAT No: <span t-esc="o.partner_id.vat"/></p>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>UOM</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Discount</th>
+              <th>VAT %</th>
+              <th>VAT Amt</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr t-foreach="o.invoice_line_ids" t-as="line">
+              <td t-esc="line.sequence"/>
+              <td>
+                <span t-field="line.name"/>
+              </td>
+              <td t-esc="line.product_uom_id.name"/>
+              <td t-esc="line.quantity"/>
+              <td t-esc="line.price_unit"/>
+              <td t-esc="line.discount"/>%
+              <td t-esc="line.tax_ids[0].amount if line.tax_ids else '0'"/>%
+              <td t-esc="line.price_total - line.price_subtotal"/>
+              <td t-esc="line.price_subtotal"/>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Totals -->
+        <div class="row mt16">
+          <div class="col-6">
+            <p>Amount in Words: <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/></p>
+          </div>
+          <div class="col-6">
+            <table class="table table-sm">
+              <tr>
+                <th>Subtotal</th>
+                <td t-esc="o.amount_untaxed"/>
+              </tr>
+              <tr>
+                <th>VAT</th>
+                <td t-esc="o.amount_tax"/>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td t-esc="o.amount_total"/>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="mt16">
+          <p><strong>Bank Details:</strong></p>
+          <p>Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.</p>
+          <p>IBAN: SA29 1000 00 1076386600014</p>
+        </div>
+
+        <!-- Signature -->
+        <div class="mt32">
+          <p>Received By _____________________</p>
+        </div>
+      </div>
+    </xpath>
+  </template>
+</odoo>
+
+
+
+
+
+<!--second one-->
+
+
+<!--<odoo>-->
+<!--  <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">-->
+<!--    <xpath expr="//div[@class='page mb-4']" position="replace">-->
+<!--      <div class="page mb-4">-->
+
+<!--        &lt;!&ndash; HEADER &ndash;&gt;-->
+<!--     &lt;!&ndash; HEADER &ndash;&gt;-->
+<!--<div class="header-container" style="width:100%; font-size:12px;">-->
+
+<!--  &lt;!&ndash; Top Info Table &ndash;&gt;-->
+<!--  <table width="100%" style="border-bottom:1px solid #000; padding-bottom:5px; table-layout:fixed;">-->
+<!--    <tr>-->
+<!--      &lt;!&ndash; English Information &ndash;&gt;-->
+<!--      <td style="width:50%; text-align:left; vertical-align:top; word-wrap:break-word;">-->
+<!--        <strong>SAMEER SHARAF AL OTAIBI TRADING COMPANY</strong><br/>-->
+<!--        C.R.: 4030216154<br/>-->
+<!--        VAT Reg.: 311299944700003<br/>-->
+<!--        Al Anwar Centre, Showroom No.12, Baladiya Street<br/>-->
+<!--        Jeddah 23334, Saudi Arabia<br/>-->
+<!--        Tel: 0536122833<br/>-->
+<!--        Email: ssaoe.jeddah@gmail.com-->
+<!--      </td>-->
+
+<!--      &lt;!&ndash; Arabic Information &ndash;&gt;-->
+<!--      <td style="width:50%; text-align:right; vertical-align:top; word-wrap:break-word;">-->
+<!--        <strong>شركة سمير شرف العتيبي التجارية</strong><br/>-->
+<!--        السجل التجاري: 4030216154<br/>-->
+<!--        ضريبة القيمة المضافة: 311299944700003<br/>-->
+<!--        مركز الأنوار، معرض رقم 12، شارع البلدية<br/>-->
+<!--        جدة 23334، المملكة العربية السعودية<br/>-->
+<!--        هاتف: 0536122833<br/>-->
+<!--        البريد الإلكتروني: ssaoe.jeddah@gmail.com-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </table>-->
+
+<!--  &lt;!&ndash; Logo Centered &ndash;&gt;-->
+<!--  <div style="text-align:center; margin:8px 0;">-->
+<!--    <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'" style="max-height:80px;"/>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Tax Invoice Red Bar &ndash;&gt;-->
+<!--  <div style="background-color:#b30000; color:#fff; text-align:center; font-size:16px; font-weight:bold; padding:4px; border-radius:4px; margin-top:5px;">-->
+<!--    Tax Invoice / فاتورة ضريبية-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+<!--        &lt;!&ndash; CUSTOMER + INVOICE INFO &ndash;&gt;-->
+<!--        <div style="margin-top:5px;">-->
+<!--          <table width="100%" style="font-size:12px; border:1px solid #000;">-->
+<!--            <tr>-->
+<!--              <td><strong>Sold To / العميل:</strong><br/><span t-field="o.partner_id.name"/></td>-->
+<!--              <td><strong>VAT No:</strong><br/><span t-field="o.partner_id.vat"/></td>-->
+<!--              <td><strong>Invoice No:</strong><br/><span t-field="o.name"/></td>-->
+<!--              <td><strong>Invoice Date:</strong><br/><span t-field="o.invoice_date"/></td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; LINES TABLE &ndash;&gt;-->
+<!--        <table class="invoice-table" width="100%" style="margin-top:8px; border-collapse:collapse;">-->
+<!--          <thead>-->
+<!--            <tr>-->
+<!--              <th>S.N</th>-->
+<!--              <th>Description / الوصف</th>-->
+<!--              <th>Operation</th>-->
+<!--              <th>UoM</th>-->
+<!--              <th>Qty</th>-->
+<!--              <th>Unit Price</th>-->
+<!--              <th>Discount %</th>-->
+<!--              <th>VAT %</th>-->
+<!--              <th>VAT Amt</th>-->
+<!--              <th>Line Total</th>-->
+<!--            </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--            <tr t-foreach="o.invoice_line_ids" t-as="line">-->
+<!--              <td><span t-esc="line.sequence or ''"/></td>-->
+<!--              <td>-->
+<!--                <span t-esc="line.name"/><br/>-->
+<!--                <span t-esc="line.product_id.description or ''"/>-->
+<!--              </td>-->
+<!--              <td><span t-esc="line.product_id.default_code or ''"/></td>-->
+<!--              <td><span t-esc="line.product_uom_id.name"/></td>-->
+<!--              <td><span t-esc="line.quantity"/></td>-->
+<!--              <td><span t-esc="line.price_unit"/></td>-->
+<!--              <td><span t-esc="line.discount"/></td>-->
+<!--              <td>-->
+<!--                <span t-esc="','.join([str(t.amount) + ' %' for t in line.tax_ids])"/>-->
+<!--              </td>-->
+<!--              <td><span t-esc="line.price_total - line.price_subtotal"/></td>-->
+<!--              <td><span t-esc="line.price_total"/></td>-->
+<!--            </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+
+<!--        &lt;!&ndash; TOTALS + Amount in Words &ndash;&gt;-->
+<!--        <div style="margin-top:10px;">-->
+<!--          <table width="100%" style="font-size:12px;">-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                <p><strong>Amount in Words:</strong><br/>-->
+<!--                <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>-->
+<!--                </p>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <table style="border:1px solid #000; width:300px;">-->
+<!--                  <tr><td>Net Amount</td><td><span t-esc="o.amount_untaxed"/></td></tr>-->
+<!--                  <tr><td>VAT Amount</td><td><span t-esc="o.amount_tax"/></td></tr>-->
+<!--                  <tr><td><strong>Grand Total</strong></td><td><strong><span t-esc="o.amount_total"/></strong></td></tr>-->
+<!--                </table>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </table>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; FOOTER &ndash;&gt;-->
+<!--        <div style="margin-top:10px; font-size:12px;">-->
+<!--          <p><strong>Bank Details:</strong> SNB Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.<br/>-->
+<!--          IBAN: SA291000001076836600010</p>-->
+<!--          <p>Received by: ____________________</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </xpath>-->
+<!--  </template>-->
+<!--</odoo>-->
+
+
+
+
+<!--third one-->
+
+
+<!--<odoo>-->
+<!--  <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">-->
+<!--    &lt;!&ndash; Replace the header to add logo, company info, and bilingual text &ndash;&gt;-->
+<!--    <xpath expr="//div[@class='page']" position="replace">-->
+<!--      <div class="header" style="text-align: center; border-bottom: 1px solid #000; padding-bottom: 10px;">-->
+<!--        <img t-att-src="'/your_module/static/src/img/logo.png'" style="max-height: 80px;"/>-->
+<!--        <h2>شركة SAMEER SHARAF AL OTAIBI TRADING COMPANY</h2>-->
+<!--        <h3>SAMEER SHARAF AL OTAIBI TRADING COMPANY</h3>-->
+<!--        <p>CR: 4030113154 | VAT: 30006467800003</p>-->
+<!--        <p>Tel: +966 12 6822833 | Email: xxx@xxx.com</p>-->
+<!--        <p><strong>Tax Invoice / فاتورة ضريبية</strong></p>-->
+<!--      </div>-->
+<!--    </xpath>-->
+
+<!--    &lt;!&ndash; Add QR code below totals &ndash;&gt;-->
+<!--    <xpath expr="//div[@class='invoice_totals']" position="after">-->
+<!--      <div style="margin-top: 15px; text-align: center;">-->
+<!--        <img t-if="o.qr_code" t-att-src="'data:image/png;base64,' + o.qr_code"/>-->
+<!--      </div>-->
+<!--    </xpath>-->
+
+<!--    &lt;!&ndash; Add bank details footer &ndash;&gt;-->
+<!--    <xpath expr="//div[@class='footer']" position="replace">-->
+<!--      <div class="footer" style="text-align: left; margin-top: 20px; font-size: 12px;">-->
+<!--        <strong>Bank Details:</strong><br/>-->
+<!--        SNB Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.<br/>-->
+<!--        IBAN: SA29 1000 00 1076836600014-->
+<!--      </div>-->
+<!--    </xpath>-->
+<!--  </template>-->
+<!--</odoo>-->
