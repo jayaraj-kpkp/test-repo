@@ -3,7 +3,7 @@
     <template id="report_invoice_document_saudi" inherit_id="account.report_invoice_document">
 
         <!-- Replace the main content -->
-        <xpath expr="//div[@class='page mb-4']" position="replace">
+        <xpath expr="//div[contains(@class, 'page')]" position="replace">
             <t t-call="web.external_layout">
                 <div class="page">
                     <!-- Header -->
