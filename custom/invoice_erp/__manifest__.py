@@ -1,16 +1,21 @@
 {
-    'name': 'Custom Invoice Template',
-    'version': '1.0',
-    'category': 'Accounting',
-    'summary': 'Overrides and customizes invoice template',
-    'author': 'Your Company',
-    'depends': ['account'],
-    'data': [
-        'views/report_invoice.xml',
+    "name": "Saudi Invoice Format",
+    "version": "1.0",
+    "depends": ["account"],
+    "author": "Your Company",
+    "category": "Accounting",
+    "summary": "Saudi Arabia style tax invoice format",
+    "description": """
+Saudi Arabia Tax Invoice with Arabic and English fields, VAT breakdown, and custom layout.
+    """,
+    "data": [
+        "views/report_invoice_saudi.xml",
     ],
-    'installable': True,
-    'application': False,
+    "installable": True,
+    "application": False,
+    "auto_install": False,
 }
+
 
 
 # {
