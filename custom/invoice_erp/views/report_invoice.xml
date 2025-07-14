@@ -1,17 +1,31 @@
-<xpath expr="//div[@id='header']" position="replace">
-    <div id="header" class="row">
-        <div class="col-6">
-            <img t-if="o.company_id.logo"
-                 t-att-src="image_data_uri(o.company_id.logo)"
-                 style="max-height:80px;"/>
-        </div>
-        <div class="col-6 text-right">
-            <h2>
-                Tax Invoice (Saudi Arabia)
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+
+        <!-- Change the title to 'Tax Invoice (Saudi Arabia)' -->
+        <xpath expr="//h2[contains(@class, 'text-center')]" position="replace">
+            <h2 class="text-center">
+                <strong>Tax Invoice (Saudi Arabia)</strong>
             </h2>
-        </div>
-    </div>
-</xpath>
+        </xpath>
+
+        <!-- Add Buyer VAT Number below customer address -->
+        <xpath expr="//div[@class='row mt32 mb32']/div[2]" position="inside">
+            <div t-if="o.partner_id.vat">
+                <strong>Buyer VAT No:</strong>
+                <span t-esc="o.partner_id.vat"/>
+            </div>
+        </xpath>
+
+        <!-- Add thank you note after totals -->
+        <xpath expr="//div[@class='row mt32 mb32']" position="after">
+            <div class="text-center mt32">
+                <strong>Thank you for your business!</strong>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
 
 
 
