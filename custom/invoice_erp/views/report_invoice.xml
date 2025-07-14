@@ -3,7 +3,7 @@
     <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
 
         <!-- Change the title to 'Tax Invoice (Saudi Arabia)' -->
-        <xpath expr="//h2[contains(@class, 'text-center')]" position="replace">
+        <xpath expr="//h2" position="replace">
             <h2 class="text-center">
                 <strong>Tax Invoice (Saudi Arabia)</strong>
             </h2>
