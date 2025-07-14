@@ -1,88 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_invoice_document_saudi" inherit_id="account.report_invoice_document">
-
-        <!-- Replace the main content -->
-        <xpath expr="//div[contains(@class, 'page')]" position="replace">
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="." position="replace">
             <t t-call="web.external_layout">
                 <div class="page">
-                    <!-- Header -->
-                    <div class="row mb-2">
-                        <div class="col-6">
-                            <h2>شركة سمير شرف العتيبي التجارية</h2>
-                            <p>الرقم الضريبي: 4030216154</p>
-                            <p>العنوان: Saudi Arabia</p>
-                            <p>Email: saeco.jeddah@gmail.com</p>
-                        </div>
-                        <div class="col-6 text-right">
-                            <h3>فاتورة ضريبية / Tax Invoice</h3>
-                        </div>
-                    </div>
+                    <!-- Your header -->
+                    <h2>شركة سمير شرف العتيبي التجارية</h2>
+                    <p>الرقم الضريبي: 4030216154</p>
+                    <p>العنوان: Saudi Arabia</p>
+                    <p>Email: saeco.jeddah@gmail.com</p>
 
                     <!-- Invoice Info -->
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <p><strong>Sold to:</strong> <span t-field="o.partner_id.name"/></p>
-                            <p><strong>VAT No:</strong> <span t-esc="o.partner_id.vat or ''"/></p>
-                        </div>
-                        <div class="col-6 text-right">
-                            <p><strong>Invoice No:</strong> <span t-field="o.name"/></p>
-                            <p><strong>Invoice Date:</strong> <span t-field="o.invoice_date"/></p>
-                        </div>
+                    <div>
+                        <p><strong>Sold to:</strong> <span t-field="o.partner_id.name"/></p>
+                        <p><strong>VAT No:</strong> <span t-esc="o.partner_id.vat or ''"/></p>
+                        <p><strong>Invoice No:</strong> <span t-field="o.name"/></p>
+                        <p><strong>Invoice Date:</strong> <span t-field="o.invoice_date"/></p>
                     </div>
 
-                    <!-- Line Table -->
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>SN</th>
-                                <th>Description</th>
-                                <th>Qty</th>
-                                <th>Unit</th>
-                                <th>Unit Price</th>
-                                <th>Discount</th>
-                                <th>VAT %</th>
-                                <th>VAT Amt</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-set="sn" t-value="1"/>
-                            <t t-foreach="o.invoice_line_ids" t-as="line">
-                                <tr>
-                                    <td><span t-esc="sn"/></td>
-                                    <td><span t-esc="line.name"/></td>
-                                    <td><span t-esc="line.quantity"/></td>
-                                    <td>PCS</td>
-                                    <td><span t-esc="line.price_unit"/></td>
-                                    <td>0.00</td>
-                                    <td>
-                                        <t t-if="line.tax_ids">
-                                            <span t-esc="line.tax_ids[0].amount"/>
-                                        </t>
-                                        <t t-if="not line.tax_ids">
-                                            0.00
-                                        </t>
-                                    </td>
-                                    <td>
-                                        <span t-esc="line.price_total - line.price_subtotal"/>
-                                    </td>
-                                    <td><span t-esc="line.price_total"/></td>
-                                </tr>
-                                <t t-set="sn" t-value="sn + 1"/>
-                            </t>
-                        </tbody>
-                    </table>
-
-                    <!-- Totals -->
-                    <div class="row mt-3">
-                        <div class="col-6"></div>
-                        <div class="col-6 text-right">
-                            <p><strong>Net Amount:</strong> <span t-esc="o.amount_untaxed"/> SAR</p>
-                            <p><strong>VAT:</strong> <span t-esc="o.amount_tax"/> SAR</p>
-                            <p><strong>Grand Total:</strong> <span t-esc="o.amount_total"/> SAR</p>
-                        </div>
-                    </div>
+                    <!-- Table and totals (add your own markup) -->
                 </div>
             </t>
         </xpath>
