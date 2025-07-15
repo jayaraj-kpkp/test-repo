@@ -1,6 +1,3 @@
-
-
-
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="report_invoice_document_custom">
@@ -8,7 +5,12 @@
       <t t-foreach="docs" t-as="o">
         <main>
           <div class="page">
+
             <div class="header-container" style="width:100%; font-size:12px;">
+<!--              <div style="text-align:center; margin:10px 0;">-->
+<!--  <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="width:100% ;" />-->
+<!--</div>-->
+
 
               <!-- Top Info Table -->
               <table width="100%" style="border-bottom:1px solid #000; padding-bottom:5px; table-layout:fixed;">
