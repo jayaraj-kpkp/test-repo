@@ -6,11 +6,11 @@
         <main>
           <div class="page">
 
+            <!-- HEADER -->
             <div class="header-container" style="width:100%; font-size:12px;">
               <!-- Top Info Table -->
               <table width="100%" style="border-bottom:1px solid #000; padding-bottom:5px; table-layout:fixed;">
                 <tr>
-                  <!-- English Information -->
                   <td style="width:50%; text-align:left; vertical-align:top; word-wrap:break-word;">
                     <strong>SAMEER SHARAF AL OTAIBI TRADING COMPANY</strong><br/>
                     C.R.: 4030216154<br/>
@@ -20,7 +20,6 @@
                     Tel: 0536122833<br/>
                     Email: ssaoe.jeddah@gmail.com
                   </td>
-                  <!-- Arabic Information -->
                   <td style="width:50%; text-align:right; vertical-align:top; word-wrap:break-word;">
                     <strong>شركة سمير شرف العتيبي التجارية</strong><br/>
                     السجل التجاري: 4030216154<br/>
@@ -73,8 +72,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr t-foreach="o.invoice_line_ids" t-as="line">
-                  <td><span t-esc="loop.index"/></td>
+                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
+                  <td><span t-esc="i + 1"/></td>
                   <td><span t-esc="line.name"/></td>
                   <td><span t-esc="line.product_id.default_code or ''"/></td>
                   <td><span t-esc="line.product_uom_id.name"/></td>
@@ -82,10 +81,10 @@
                   <td><span t-esc="line.price_unit"/></td>
                   <td><span t-esc="line.discount"/></td>
                   <td>
-                    <span t-foreach="line.tax_ids" t-as="tax">
+                    <t t-foreach="line.tax_ids" t-as="tax" t-foreach-index="j">
                       <span t-esc="tax.amount"/>%
-                      <t t-if="not loop.last">, </t>
-                    </span>
+                      <t t-if="j + 1 != len(line.tax_ids)">, </t>
+                    </t>
                   </td>
                   <td><span t-esc="line.price_total - line.price_subtotal"/></td>
                   <td><span t-esc="line.price_total"/></td>
