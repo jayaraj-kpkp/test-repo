@@ -8,7 +8,6 @@
 
             <!-- HEADER -->
             <div class="header-container" style="width:100%; font-size:12px;">
-              <!-- Top Info Table -->
               <table width="100%" style="border-bottom:1px solid #000; padding-bottom:5px; table-layout:fixed;">
                 <tr>
                   <td style="width:50%; text-align:left; vertical-align:top; word-wrap:break-word;">
@@ -32,12 +31,10 @@
                 </tr>
               </table>
 
-              <!-- Logo Centered -->
               <div style="text-align:center; margin:8px 0;">
                 <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'" style="max-height:80px;"/>
               </div>
 
-              <!-- Tax Invoice Red Bar -->
               <div style="background-color:#b30000; color:#fff; text-align:center; font-size:16px; font-weight:bold; padding:4px; border-radius:4px; margin-top:5px;">
                 Tax Invoice / فاتورة ضريبية
               </div>
@@ -72,23 +69,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
-                  <td><span t-esc="i + 1"/></td>
-                  <td><span t-esc="line.name"/></td>
-                  <td><span t-esc="line.product_id.default_code or ''"/></td>
-                  <td><span t-esc="line.product_uom_id.name"/></td>
-                  <td><span t-esc="line.quantity"/></td>
-                  <td><span t-esc="line.price_unit"/></td>
-                  <td><span t-esc="line.discount"/></td>
-                  <td>
-                    <t t-foreach="line.tax_ids" t-as="tax" t-foreach-index="j">
-                      <span t-esc="tax.amount"/>%
-                      <t t-if="j + 1 != len(line.tax_ids)">, </t>
-                    </t>
-                  </td>
-                  <td><span t-esc="line.price_total - line.price_subtotal"/></td>
-                  <td><span t-esc="line.price_total"/></td>
-                </tr>
+                <t t-foreach="enumerate(o.invoice_line_ids)" t-as="line_with_index">
+                  <tr>
+                    <td><span t-esc="line_with_index[0] + 1"/></td>
+                    <td><span t-esc="line_with_index[1].name"/></td>
+                    <td><span t-esc="line_with_index[1].product_id.default_code or ''"/></td>
+                    <td><span t-esc="line_with_index[1].product_uom_id.name"/></td>
+                    <td><span t-esc="line_with_index[1].quantity"/></td>
+                    <td><span t-esc="line_with_index[1].price_unit"/></td>
+                    <td><span t-esc="line_with_index[1].discount"/></td>
+                    <td>
+                      <t t-foreach="enumerate(line_with_index[1].tax_ids)" t-as="tax_with_index">
+                        <span t-esc="tax_with_index[1].amount"/>%
+                        <t t-if="tax_with_index[0] + 1 != len(line_with_index[1].tax_ids)">, </t>
+                      </t>
+                    </td>
+                    <td><span t-esc="line_with_index[1].price_total - line_with_index[1].price_subtotal"/></td>
+                    <td><span t-esc="line_with_index[1].price_total"/></td>
+                  </tr>
+                </t>
               </tbody>
             </table>
 
