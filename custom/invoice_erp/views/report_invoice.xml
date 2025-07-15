@@ -7,11 +7,6 @@
           <div class="page">
 
             <div class="header-container" style="width:100%; font-size:12px;">
-<!--              <div style="text-align:center; margin:10px 0;">-->
-<!--  <img t-att-src="'/invoice_erp/static/src/img/header.png'" style="width:100% ;" />-->
-<!--</div>-->
-
-
               <!-- Top Info Table -->
               <table width="100%" style="border-bottom:1px solid #000; padding-bottom:5px; table-layout:fixed;">
                 <tr>
@@ -25,7 +20,6 @@
                     Tel: 0536122833<br/>
                     Email: ssaoe.jeddah@gmail.com
                   </td>
-
                   <!-- Arabic Information -->
                   <td style="width:50%; text-align:right; vertical-align:top; word-wrap:break-word;">
                     <strong>شركة سمير شرف العتيبي التجارية</strong><br/>
@@ -81,19 +75,17 @@
               <tbody>
                 <tr t-foreach="o.invoice_line_ids" t-as="line">
                   <td><span t-esc="loop.index"/></td>
-                  <td>
-                    <span t-esc="line.name"/>
-                  </td>
+                  <td><span t-esc="line.name"/></td>
                   <td><span t-esc="line.product_id.default_code or ''"/></td>
                   <td><span t-esc="line.product_uom_id.name"/></td>
                   <td><span t-esc="line.quantity"/></td>
                   <td><span t-esc="line.price_unit"/></td>
                   <td><span t-esc="line.discount"/></td>
                   <td>
-                    <t t-foreach="line.tax_ids" t-as="tax">
+                    <span t-foreach="line.tax_ids" t-as="tax">
                       <span t-esc="tax.amount"/>%
                       <t t-if="not loop.last">, </t>
-                    </t>
+                    </span>
                   </td>
                   <td><span t-esc="line.price_total - line.price_subtotal"/></td>
                   <td><span t-esc="line.price_total"/></td>
@@ -126,5 +118,3 @@
     </t>
   </template>
 </odoo>
-
-
