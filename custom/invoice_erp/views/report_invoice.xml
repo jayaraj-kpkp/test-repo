@@ -2,22 +2,25 @@
 <odoo>
     <template id="report_invoice_document_custom">
         <t t-call="web.external_layout">
-            <div class="page">
-                <h2>شركة سمير شرف العتيبي التجارية</h2>
-                <p>الرقم الضريبي: 4030216154</p>
-                <p>العنوان: Saudi Arabia</p>
-                <p>Email: saeco.jeddah@gmail.com</p>
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <h2>شركة سمير شرف العتيبي التجارية</h2>
+                    <p>الرقم الضريبي: 4030216154</p>
+                    <p>العنوان: Saudi Arabia</p>
+                    <p>Email: saeco.jeddah@gmail.com</p>
 
-                <div>
-                    <p><strong>Sold to:</strong> <span t-field="o.partner_id.name"/></p>
-                    <p><strong>VAT No:</strong> <span t-esc="o.partner_id.vat or ''"/></p>
-                    <p><strong>Invoice No:</strong> <span t-field="o.name"/></p>
-                    <p><strong>Invoice Date:</strong> <span t-field="o.invoice_date"/></p>
+                    <div>
+                        <p><strong>Sold to:</strong> <span t-field="o.partner_id.name"/></p>
+                        <p><strong>VAT No:</strong> <span t-esc="o.partner_id.vat or ''"/></p>
+                        <p><strong>Invoice No:</strong> <span t-field="o.name"/></p>
+                        <p><strong>Invoice Date:</strong> <span t-field="o.invoice_date"/></p>
+                    </div>
                 </div>
-            </div>
+            </t>
         </t>
     </template>
 </odoo>
+
 
 
 
