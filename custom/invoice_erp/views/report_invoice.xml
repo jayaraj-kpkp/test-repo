@@ -53,7 +53,8 @@
                 <td style="border:1px solid #000; padding:4px;">
                   <strong>Invoice No:</strong>
                   <span t-field="o.name"/>
-                  <strong style="margin-left:20px;">Invoice Date:</strong>
+                  <span style="display:inline-block; width:20px;"></span>
+                  <strong>Invoice Date:</strong>
                   <span t-field="o.invoice_date"/>
                 </td>
               </tr>
@@ -62,8 +63,10 @@
                   <strong>Delivery Date:</strong>
                 </td>
                 <td style="border:1px solid #000; padding:4px;">
-                  <strong>P.O No:</strong> &nbsp;&nbsp;
-                  <strong>Terms:</strong> &nbsp;&nbsp;
+                  <strong>P.O No:</strong>
+                  <span style="display:inline-block; width:10px;"></span>
+                  <strong>Terms:</strong>
+                  <span style="display:inline-block; width:10px;"></span>
                   <strong>Delivery Note No:</strong>
                 </td>
               </tr>
