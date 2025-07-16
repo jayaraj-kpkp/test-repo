@@ -7,10 +7,12 @@
           <div class="page">
 
             <!-- HEADER -->
-            <table width="100%" style="font-size:12px; border-collapse:collapse;">
+            <table width="100%" style="font-size:13px; border-collapse:collapse;">
               <tr>
                 <td style="width:45%; text-align:left; vertical-align:top;">
-                  <strong>SAMEER SHARAF AL OTAIBI TRADING COMPANY</strong><br/>
+                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">
+                    SAMEER SHARAF AL OTAIBI TRADING COMPANY
+                  </strong><br/>
                   C.R.: 4030216154<br/>
                   VAT Reg.: 311299944700003<br/>
                   Al Anwar Centre, Showroom No.12, Baladiya Street<br/>
@@ -19,10 +21,12 @@
                   Email: ssaoe.jeddah@gmail.com
                 </td>
                 <td style="width:10%; text-align:center;">
-                  <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'" style="max-height:80px;"/>
+                  <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'" style="max-height:100px;"/>
                 </td>
                 <td style="width:45%; text-align:right; vertical-align:top;">
-                  <strong>شركة سمير شرف العتيبي التجارية</strong><br/>
+                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">
+                    شركة سمير شرف العتيبي التجارية
+                  </strong><br/>
                   السجل التجاري: 4030216154<br/>
                   ضريبة القيمة المضافة: 311299944700003<br/>
                   مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
@@ -63,11 +67,11 @@
                   <strong>Delivery Date:</strong>
                 </td>
                 <td style="border:1px solid #000; padding:4px;">
-                  <strong>P.O No:</strong>
-                  <span style="display:inline-block; width:10px;"></span>
-                  <strong>Terms:</strong>
-                  <span style="display:inline-block; width:10px;"></span>
-                  <strong>Delivery Note No:</strong>
+                  <strong>P.O No / رقم أمر الشراء:</strong>
+                  <span style="display:inline-block; width:15px;"></span>
+                  <strong>Terms / الشروط:</strong>
+                  <span style="display:inline-block; width:15px;"></span>
+                  <strong>Delivery Note No / رقم إشعار التسليم:</strong>
                 </td>
               </tr>
             </table>
@@ -75,41 +79,45 @@
             <!-- INVOICE TABLE -->
             <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px;">
               <thead>
-                <tr style="background-color:#f0f0f0;">
-                  <th style="border:1px solid #000; padding:4px;">S.N</th>
-                  <th style="border:1px solid #000; padding:4px;">Item</th>
-                  <th style="border:1px solid #000; padding:4px;">Description</th>
-                  <th style="border:1px solid #000; padding:4px;">QTY</th>
-                  <th style="border:1px solid #000; padding:4px;">Unit</th>
-                  <th style="border:1px solid #000; padding:4px;">S.Rate</th>
-                  <th style="border:1px solid #000; padding:4px;">Disc</th>
-                  <th style="border:1px solid #000; padding:4px;">Amount</th>
-                  <th style="border:1px solid #000; padding:4px;">VAT%</th>
-                  <th style="border:1px solid #000; padding:4px;">VAT</th>
-                  <th style="border:1px solid #000; padding:4px;">Total Price</th>
-                </tr>
-              </thead>
+                  <tr style="background-color:#f0f0f0;">
+                    <th style="border:1px solid #000; padding:4px;">S.N<br/><small>مسلسل</small></th>
+                    <th style="border:1px solid #000; padding:4px;">Item<br/><small>الصنف</small></th>
+                    <th style="border:1px solid #000; padding:4px;">Description<br/><small>الوصف</small></th>
+                    <th style="border:1px solid #000; padding:4px;">QTY<br/><small>الكمية</small></th>
+                    <th style="border:1px solid #000; padding:4px;">Unit<br/><small>الوحدة</small></th>
+                    <th style="border:1px solid #000; padding:4px;">S. Rate<br/><small>سعر الوحدة</small></th>
+                    <th style="border:1px solid #000; padding:4px;">Disc<br/><small>الخصم</small></th>
+                    <th style="border:1px solid #000; padding:4px;">Amount<br/><small>المبلغ</small></th>
+                    <th style="border:1px solid #000; padding:4px;">VAT%<br/><small>ضريبة القيمة المضافة %</small></th>
+                    <th style="border:1px solid #000; padding:4px;">VAT<br/><small>ضريبة</small></th>
+                    <th style="border:1px solid #000; padding:4px;">Total Price<br/><small>السعر الإجمالي</small></th>
+                  </tr>
+                </thead>
+
               <tbody>
                 <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
-                  <t t-set="row_num" t-value="(i or 0) + 1"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="row_num"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.default_code or ''"/>
+                  <t t-set="row_index" t-value="0 if i is None else i"/>
+                  <td style="border:1px solid #000; padding:4px;">
+                    <t t-esc="row_index + 1"/>
+                  </td>
+                  <td style="border:1px solid #000; padding:4px;">
+                    <t t-esc="line.product_id.default_code or ''"/>
+                  </td>
                   <td style="border:1px solid #000; padding:4px;">
                     <t t-if="line.name">
-                      <span t-esc="line.name"/>
+                      <t t-esc="line.name"/>
                     </t>
                   </td>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.quantity"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.product_uom_id.name"/>
+                  <td style="border:1px solid #000; padding:4px;">
+                    <t t-if="line.product_uom_id.name == 'Meter' or line.product_uom_id.name == 'M'">MTR</t>
+                    <t t-elif="line.product_uom_id.name == 'Unit' or line.product_uom_id.name == 'Units'">PCS</t>
+                    <t t-else=""><t t-esc="line.product_uom_id.name"/></t>
+                  </td>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.price_unit"/>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.discount"/>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.price_subtotal"/>
-                  <td style="border:1px solid #000; padding:4px;">
-                    <t t-foreach="line.tax_ids" t-as="tax" t-foreach-index="j">
-                      <span t-esc="tax.amount"/>%
-                      <t t-if="(j or 0) + 1 != len(line.tax_ids)">, </t>
-                    </t>
-                  </td>
+                  <td style="border:1px solid #000; padding:4px;">15%</td>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.price_total - line.price_subtotal"/>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.price_total"/>
                 </tr>
