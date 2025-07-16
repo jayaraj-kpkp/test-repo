@@ -117,6 +117,13 @@
               <tr>
                 <td>
                   <p>
+                    <div style="margin-top:10px; text-align:left;">
+                      <strong>QR Code (ZATCA):</strong><br/>
+                      <img t-if="o.qr_code_image" t-att-src="'data:image/png;base64,%s' % o.qr_code_image" style="width:120px; height:120px;"/>
+                    </div>
+                     <td style="width:30%; text-align:center; vertical-align:top; border:none;">
+                                      <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:100px;"/>
+                                    </td>
                     <strong>Amount in Words:</strong><br/>
                     <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
                   </p>
