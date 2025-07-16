@@ -91,7 +91,8 @@
               </thead>
               <tbody>
                 <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
-                  <td style="border:1px solid #000; padding:4px;" t-esc="i + 1"/>
+                  <t t-set="row_num" t-value="(i or 0) + 1"/>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="row_num"/>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.default_code or ''"/>
                   <td style="border:1px solid #000; padding:4px;">
                     <t t-if="line.name">
@@ -106,7 +107,7 @@
                   <td style="border:1px solid #000; padding:4px;">
                     <t t-foreach="line.tax_ids" t-as="tax" t-foreach-index="j">
                       <span t-esc="tax.amount"/>%
-                      <t t-if="j + 1 != len(line.tax_ids)">, </t>
+                      <t t-if="(j or 0) + 1 != len(line.tax_ids)">, </t>
                     </t>
                   </td>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.price_total - line.price_subtotal"/>
