@@ -42,4 +42,4 @@ zeep
 libsass
 geoip2
 python-stdnum
-qrcode[pil]
+
