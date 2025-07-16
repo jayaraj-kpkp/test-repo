@@ -1,8 +1,7 @@
-from odoo import models, fields
+from odoo import models, fields, api
 import base64
 import qrcode
 from io import BytesIO
-
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -10,9 +9,10 @@ class AccountMove(models.Model):
     qr_code_image = fields.Binary(
         string="ZATCA QR Code",
         compute="_compute_qr_code_image",
-        store=False
+        store=True  # makes recompute automatic
     )
 
+    @api.depends('company_id.name', 'company_id.vat', 'invoice_date', 'amount_total', 'amount_tax')
     def _compute_qr_code_image(self):
         for rec in self:
             rec.qr_code_image = rec._generate_qr_code()
@@ -20,7 +20,6 @@ class AccountMove(models.Model):
     def _generate_qr_code(self):
         self.ensure_one()
 
-        # Helper to encode a single TLV tag
         def _encode_tag(tag, value):
             value_bytes = value.encode('utf-8')
             return bytes([tag]) + bytes([len(value_bytes)]) + value_bytes
@@ -34,7 +33,6 @@ class AccountMove(models.Model):
         invoice_total = "{0:.2f}".format(self.amount_total)
         vat_total = "{0:.2f}".format(self.amount_tax)
 
-        # Build the TLV payload
         qr_bytes = (
             _encode_tag(1, seller_name) +
             _encode_tag(2, seller_vat) +
@@ -42,10 +40,8 @@ class AccountMove(models.Model):
             _encode_tag(4, invoice_total) +
             _encode_tag(5, vat_total)
         )
-        # Encode TLV to Base64
         qr_base64 = base64.b64encode(qr_bytes).decode('utf-8')
 
-        # Generate QR code image
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_M,
@@ -58,6 +54,4 @@ class AccountMove(models.Model):
         img = qr.make_image(fill_color="black", back_color="white")
         buffer = BytesIO()
         img.save(buffer, format='PNG')
-
-        # Return Base64 string for embedding in QWeb
         return base64.b64encode(buffer.getvalue()).decode()
