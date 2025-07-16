@@ -18,17 +18,19 @@
                   Tel: 0536122833<br/>
                   Email: ssaoe.jeddah@gmail.com
                 </td>
-                <td style="width:10%; text-align:center; vertical-align:top; border:none;">
+                <td style="width:30%; text-align:center; vertical-align:top; border:none;">
                   <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'" style="max-height:100px;"/>
                 </td>
                 <td style="width:45%; text-align:right; vertical-align:top;">
-                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">شركة سمير شرف العتيبي التجارية</strong><br/>
-                  السجل التجاري: 4030216154<br/>
-                  ضريبة القيمة المضافة: 311299944700003<br/>
-                  مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
-                  جدة 23334، المملكة العربية السعودية<br/>
-                  هاتف: 0536122833<br/>
-                  البريد الإلكتروني: ssaoe.jeddah@gmail.com
+                  <div style="display:inline-block; max-width:100%; word-wrap:break-word; word-break:break-all;">
+                    <strong style="color:#800000; font-size:14px; text-decoration:underline;">شركة سمير شرف العتيبي التجارية</strong><br/>
+                    السجل التجاري: 4030216154<br/>
+                    ضريبة القيمة المضافة: 311299944700003<br/>
+                    مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
+                    جدة 23334، المملكة العربية السعودية<br/>
+                    هاتف: 0536122833<br/>
+                    البريد الإلكتروني: ssaoe.jeddah@gmail.com
+                  </div>
                 </td>
               </tr>
             </table>
@@ -61,9 +63,9 @@
               <tr>
                 <td colspan="2" style="border:1px solid #000; padding:4px;">
                   <strong>P.O No / رقم أمر الشراء :</strong>
-                  <span style="display:inline-block; width:20px;"></span>
+                  <span style="display:inline-block; min-width:40px;"></span>
                   <strong>Terms / الشروط :</strong>
-                  <span style="display:inline-block; width:20px;"></span>
+                  <span style="display:inline-block; min-width:40px;"></span>
                   <strong>Delivery Note No / رقم إيصال التسليم :</strong>
                 </td>
               </tr>
@@ -86,29 +88,28 @@
                   <th style="border:1px solid #000; padding:4px;">TOTAL PRICE<br/>سعر الإجمالي</th>
                 </tr>
               </thead>
-               <tbody>
-                  <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
-                    <td style="border:1px solid #000; padding:4px;" t-esc="0 if i is None else i + 1"/>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.display_name or ''"/>
-                    <td style="border:1px solid #000; padding:4px;">
-                      <t t-if="line.name and line.name != line.product_id.display_name">
-                        <span t-esc="line.name"/>
-                      </t>
-                    </td>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="line.quantity"/>
-                    <td style="border:1px solid #000; padding:4px;">
-                      <t t-if="'meter' in line.product_uom_id.name.lower()">MTR</t>
-                      <t t-else="">PCS</t>
-                    </td>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="line.price_unit"/>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="line.discount"/>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="line.price_subtotal"/>
-                    <td style="border:1px solid #000; padding:4px;">15%</td>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="'{0:.2f}'.format(line.price_subtotal * 0.15)"/>
-                    <td style="border:1px solid #000; padding:4px;" t-esc="line.price_total"/>
-                  </tr>
-                  </tbody>
-
+              <tbody>
+                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
+                  <td style="border:1px solid #000; padding:4px;" t-esc="(0 if i is None else i + 1)"/>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.display_name or ''"/>
+                  <td style="border:1px solid #000; padding:4px;">
+                    <t t-if="line.name and line.name != line.product_id.display_name">
+                      <span t-esc="line.name"/>
+                    </t>
+                  </td>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="line.quantity"/>
+                  <td style="border:1px solid #000; padding:4px;">
+                    <t t-if="'meter' in line.product_uom_id.name.lower()">MTR</t>
+                    <t t-else="">PCS</t>
+                  </td>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="line.price_unit"/>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="line.discount"/>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="line.price_subtotal"/>
+                  <td style="border:1px solid #000; padding:4px;">15%</td>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="'{0:.2f}'.format(line.price_subtotal * 0.15)"/>
+                  <td style="border:1px solid #000; padding:4px;" t-esc="line.price_total"/>
+                </tr>
+              </tbody>
             </table>
 
             <!-- TOTALS -->
@@ -127,11 +128,11 @@
                       <td><span t-esc="o.amount_untaxed"/></td>
                     </tr>
                     <tr>
-                      <td>VAT Amount</td>
+                      <td>VAT 15%</td>
                       <td><span t-esc="o.amount_tax"/></td>
                     </tr>
                     <tr>
-                      <td><strong>Grand Total</strong></td>
+                      <td><strong>Grand Total (Net + VAT)</strong></td>
                       <td><strong><span t-esc="o.amount_total"/></strong></td>
                     </tr>
                   </table>
