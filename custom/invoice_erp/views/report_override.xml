@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <report
-    id="account.report_invoice"
-    model="account.move"
-    string="Invoice"
-    report_type="qweb-pdf"
-    name="account.report_invoice_document"
-    file="account.report_invoice_document"
-    print_report_name="(object.state in ('draft', 'proforma') and 'Pro-forma Invoice - %s' % (object.name) or 'Invoice - %s' % (object.name))"
-  />
+    <!-- Override the default Invoice PDF action to use your custom template -->
+    <record id="account.report_invoice_with_payments" model="ir.actions.report">
+        <field name="name">Custom Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">invoice_erp.report_invoice_document_custom</field>
+        <field name="report_file">invoice_erp.report_invoice_document_custom</field>
+        <field name="print_report_name">'Custom Invoice - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
 </odoo>
+
