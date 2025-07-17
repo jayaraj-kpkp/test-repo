@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <report
+    id="account.report_invoice"
+    model="account.move"
+    string="Invoice"
+    report_type="qweb-pdf"
+    name="account.report_invoice_document"
+    file="account.report_invoice_document"
+    print_report_name="(object.state in ('draft', 'proforma') and 'Pro-forma Invoice - %s' % (object.name) or 'Invoice - %s' % (object.name))"
+  />
+</odoo>

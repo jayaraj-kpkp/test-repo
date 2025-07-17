@@ -2,7 +2,7 @@
 <odoo>
 
   <!-- ✅ Overriding only the template, not the report action -->
-  <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+  <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
     <t t-call="web.external_layout">
       <t t-foreach="docs" t-as="o">
         <main>
