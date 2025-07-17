@@ -1,89 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <!-- Override default invoice report action to use custom template -->
-  <record id="account.report_invoice_document" model="ir.actions.report">
-    <field name="report_name">invoice_erp.report_invoice_document_custom</field>
-    <field name="report_file">invoice_erp.report_invoice_document_custom</field>
-  </record>
-
-  <!-- Custom Invoice Template -->
-  <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+  <!-- ✅ Overriding only the template, not the report action -->
+  <template id="report_invoice_document" inherit_id="account.report_invoice_document">
     <t t-call="web.external_layout">
       <t t-foreach="docs" t-as="o">
         <main>
           <div class="page">
 
+            <!-- ✅ Your existing invoice layout STARTS HERE -->
+
             <!-- HEADER -->
-            <div style="display: flex; justify-content: space-between; font-size:12px; width:100%; flex-wrap:wrap;">
-
-              <!-- Left Side: English -->
-              <div style="width:35%; text-align:left;">
-                <strong style="color:#800000; font-size:14px; text-decoration:underline;">
-                  SAMEER SHARAF AL OTAIBI TRADING COMPANY
-                </strong><br/>
-                C.R.: 4030216154<br/>
-                VAT Reg.: 311299944700003<br/>
-                Al Anwar Centre, Showroom No. 12,<br/>
-                Baladiya Street, Jeddah 23334 - Saudi Arabia<br/>
-                Tel: 0536122833<br/>
-                Email: ssaoe.jeddah@gmail.com
-              </div>
-
-              <!-- Center Logo -->
-              <div style="width:30%; text-align:center;">
-                <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'"
-                     style="max-height:80px; margin-bottom:4px;" />
-              </div>
-
-              <!-- Right Side: Arabic -->
-              <div style="width:35%; text-align:right; direction:rtl;">
-                <strong style="color:#800000; font-size:14px; text-decoration:underline;">
-                  شركة سمير شرف العتيبي التجارية
-                </strong><br/>
-                السجل التجاري: 4030216154<br/>
-                ضريبة القيمة المضافة: 311299944700003<br/>
-                مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
-                جدة 23334، المملكة العربية السعودية<br/>
-                هاتف: 0536122833<br/>
-                البريد الإلكتروني: ssaoe.jeddah@gmail.com
-              </div>
-            </div>
-
-            <!-- Tax Invoice Label -->
-            <div style="background-color:#800000; color:#fff; text-align:center; font-size:16px; font-weight:bold; padding:6px; border-radius:4px; margin:8px 0;">
-              Tax Invoice / فاتورة ضريبية
-            </div>
-
-            <!-- CUSTOMER INFO -->
-            <table width="100%" style="font-size:11px; border:1px solid #000; margin-top:6px; border-collapse:collapse; font-weight: bold; ">
+            <table width="100%" style="font-size:12px; border-collapse:collapse;">
               <tr>
-                <td colspan="2" style="border:1px solid #000; padding:4px;">
-                  <strong>Sold To / العميل :</strong><br/>
-                  <span t-field="o.partner_id.name"/>
+                <td style="width:45%;">
+                  <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="max-height:120px; max-width:220px;"/>
+                </td>
+                <td style="width:55%; text-align:right;">
+                  <h2 style="margin-bottom:0px; color:#800000; font-size:18px; text-decoration: underline;"><strong><span t-esc="o.company_id.name"/></strong></h2>
+                  <h2 style="margin-top:0px; color:#800000; font-size:16px; text-decoration: underline;"><strong><span t-esc="o.company_id.name_arabic or ''"/></strong></h2>
                 </td>
               </tr>
+            </table>
+
+            <!-- TITLE -->
+            <h2 class="text-center" style="margin:12px 0;">Tax Invoice<br/>فاتورة ضريبية</h2>
+
+            <!-- CUSTOMER INFO TABLE -->
+            <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px;">
               <tr>
-                <td style="border:1px solid #000; padding:4px;">
-                  <strong>VAT No:</strong>
-                  <span t-field="o.partner_id.vat"/>
-                </td>
-                <td style="border:1px solid #000; padding:4px;">
-                  <strong>Invoice No:</strong>
-                  <span t-field="o.name"/>
-                  <span style="display:inline-block; width:20px;"></span>
-                  <strong>Invoice Date:</strong>
-                  <span t-field="o.invoice_date"/>
-                </td>
+                <td><strong>Invoice No:</strong> <span t-esc="o.name or ''"/></td>
+                <td><strong>Customer:</strong> <span t-esc="o.partner_id.name or ''"/></td>
+                <td><strong>Date:</strong> <span t-esc="format_date(o.invoice_date)"/></td>
               </tr>
               <tr>
-                <td colspan="2" style="border:1px solid #000; padding:4px;">
-                  <strong>P.O No / رقم أمر الشراء :</strong>
-                  <span style="display:inline-block; min-width:40px;"></span>
-                  <strong>Terms / الشروط :</strong>
-                  <span style="display:inline-block; min-width:40px;"></span>
-                  <strong>Delivery Note No / رقم إيصال التسليم :</strong>
-                </td>
+                <td><strong>رقم الفاتورة</strong></td>
+                <td><strong>العميل</strong></td>
+                <td><strong>التاريخ</strong></td>
+              </tr>
+            </table>
+
+            <!-- OPTIONAL FIELDS -->
+            <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px;">
+              <tr>
+                <td><strong>P.O No:</strong> <span t-esc="o.ref or ''"/></td>
+                <td><strong>Terms:</strong> <span t-esc="o.invoice_payment_term_id.name or ''"/></td>
+                <td><strong>Delivery Note No:</strong> <span t-esc="o.invoice_origin or ''"/></td>
+              </tr>
+              <tr>
+                <td><strong>رقم أمر الشراء</strong></td>
+                <td><strong>شروط</strong></td>
+                <td><strong>رقم إشعار التسليم</strong></td>
               </tr>
             </table>
 
@@ -91,96 +58,52 @@
             <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px;">
               <thead>
                 <tr style="background-color:#f0f0f0;">
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">S.N<br/>مسلسل</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">ITEM<br/>الصنف</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">DESCRIPTION<br/>الوصف</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">QTY<br/>الكمية</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">UNIT<br/>الوحدة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">S. RATE<br/>سعر الوحدة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">DISC<br/>الخصم</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">AMOUNT<br/>المبلغ</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">VAT%<br/>نسبة ضريبة القيمة المضافة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">VAT<br/>ضريبة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">TOTAL PRICE<br/>سعر الإجمالي</th>
+                  <th style="border:1px solid #000; padding:4px;">S.N<br/>مسلسل</th>
+                  <th style="border:1px solid #000; padding:4px;">Description<br/>الوصف</th>
+                  <th style="border:1px solid #000; padding:4px;">Qty<br/>الكمية</th>
+                  <th style="border:1px solid #000; padding:4px;">Unit<br/>الوحدة</th>
+                  <th style="border:1px solid #000; padding:4px;">Unit Price<br/>سعر الوحدة</th>
+                  <th style="border:1px solid #000; padding:4px;">Amount<br/>المبلغ</th>
+                  <th style="border:1px solid #000; padding:4px;">VAT 15%<br/>ضريبة القيمة المضافة</th>
+                  <th style="border:1px solid #000; padding:4px;">Total<br/>الإجمالي</th>
                 </tr>
               </thead>
               <tbody>
-                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
-                  <td style="border:1px solid #000; padding:4px;" t-esc="(0 if i is None else i + 1)"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.display_name or ''"/>
+                <tr t-foreach="o.invoice_line_ids" t-as="line" t-if="line.display_type == False">
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="line.sequence or ''"/></td>
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="line.name or ''"/></td>
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="line.quantity"/></td>
                   <td style="border:1px solid #000; padding:4px;">
-                    <t t-if="line.name and line.name != line.product_id.display_name">
-                      <span t-esc="line.name"/>
-                    </t>
-                  </td>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.quantity"/>
-                  <td style="border:1px solid #000; padding:4px;">
-                    <t t-if="'meter' in line.product_uom_id.name.lower()">MTR</t>
+                    <t t-if="line.product_uom_id.name == 'Meter'">MTR</t>
                     <t t-else="">PCS</t>
                   </td>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.price_unit"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.discount"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.price_subtotal"/>
-                  <td style="border:1px solid #000; padding:4px;">15%</td>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="'{0:.2f}'.format(line.price_subtotal * 0.15)"/>
-                  <td style="border:1px solid #000; padding:4px;" t-esc="line.price_total"/>
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="format_amount(line.price_unit, o.currency_id)"/></td>
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="format_amount(line.price_subtotal, o.currency_id)"/></td>
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="format_amount(line.price_total - line.price_subtotal, o.currency_id)"/></td>
+                  <td style="border:1px solid #000; padding:4px;"><span t-esc="format_amount(line.price_total, o.currency_id)"/></td>
                 </tr>
               </tbody>
             </table>
 
-            <!-- TOTALS SECTION -->
-            <table width="100%" style="font-size:11px; margin-top:8px; border-collapse:collapse; border:1px solid #000;">
+            <!-- TOTALS -->
+            <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px;">
               <tr>
-                <td style="width:20%; border:1px solid #000; padding:4px;">
-                  <strong>Delivered by</strong><br/>سلمت بواسطة
-                   <strong style="padding:4px;">Received by</strong><br/>استلمت بواسطة
-                </td>
-                <td style="width:20%; text-align:center; border:1px solid #000;">
-                  <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
-                </td>
-                <td style="width:20%; text-align:center; border:1px solid #000;">
-                  <t t-if="o.qr_code_image">
-                    <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px; max-width:100px;" />
-                  </t>
-                </td>
-                <td style="width:20%;  padding:4px;">
-                  <table width="100%" style="font-size:11px;">
-                    <tr><td>Total Amount :<br/>المبلغ الإجمالي</td><td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td></tr>
-                    <tr><td>Discount :<br/>الخصم</td><td style="text-align:right;">0.00</td></tr>
-                    <tr><td>Net Amount :<br/>صافي المبلغ</td><td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td></tr>
-                    <tr><td>VAT (15%) :<br/>ضريبة القيمة المضافة</td><td style="text-align:right;"><span t-esc="o.amount_tax"/></td></tr>
-                    <tr><td><strong>Grand Total :</strong><br/><strong>المبلغ الإجمالي</strong></td><td style="text-align:right;"><strong><span t-esc="o.amount_total"/></strong></td></tr>
-                  </table>
-                </td>
+                <td style="text-align:right;"><strong>Subtotal:</strong> <span t-esc="format_amount(o.amount_untaxed, o.currency_id)"/></td>
               </tr>
-
-              <!-- Amount in Words -->
               <tr>
-                <td colspan="5" style="border-top:1px solid #000; padding:4px;">
-                  <strong><span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> only.</strong>
-                </td>
+                <td style="text-align:right;"><strong>VAT 15%:</strong> <span t-esc="format_amount(o.amount_tax, o.currency_id)"/></td>
               </tr>
-
-              <!-- Bank Details -->
               <tr>
-                <td colspan="5" style="border-top:1px solid #000; padding:4px;">
-                  <div style="display:flex; justify-content:space-between;">
-                    <div>
-                      <strong>Bank Details :</strong><br/>
-                      SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
-                      IBAN : SA29 1000 00 10768366000104
-                    </div>
-                    <div style="text-align:right;">
-                      <strong>: التفاصيل المصرفية</strong>
-                    </div>
-                  </div>
-                </td>
+                <td style="text-align:right;"><strong>Total:</strong> <span t-esc="format_amount(o.amount_total, o.currency_id)"/></td>
               </tr>
             </table>
+
+            <!-- ✅ Your existing invoice layout ENDS HERE -->
 
           </div>
         </main>
       </t>
     </t>
   </template>
+
 </odoo>
