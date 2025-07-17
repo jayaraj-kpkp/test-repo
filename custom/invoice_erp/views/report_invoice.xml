@@ -119,7 +119,8 @@
                <t t-if="o.qr_code_image">
                   <div>
                     <strong>QR Code (ZATCA):</strong><br/>
-                    <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="width:120px; height:120px;"/>
+              <img t-if="o.qr_code_image" t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:100px; max-width:100px;" />
+
                   </div>
                 </t>
 
