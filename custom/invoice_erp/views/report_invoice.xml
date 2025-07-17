@@ -8,41 +8,41 @@
 
             <!-- HEADER -->
                            <!-- INVOICE HEADER -->
-              <table width="100%" style="border-collapse:collapse; font-size:12px;">
-                <tr>
-                  <!-- Left Side: English -->
-                  <td style="width:35%; text-align:left; vertical-align:top;">
-                    <strong style="color:#800000; font-size:14px; text-decoration:underline;">
-                      SAMEER SHARAF AL OTAIBI TRADING COMPANY
-                    </strong><br/>
-                    C.R.: 4030216154<br/>
-                    VAT Reg.: 311299944700003<br/>
-                    Al Anwar Centre, Showroom No. 12,<br/>
-                    Baladiya Street, Jeddah 23334 - Saudi Arabia<br/>
-                    Tel: 0536122833<br/>
-                    Email: ssaoe.jeddah@gmail.com
-                  </td>
+           <div style="display: flex; justify-content: space-between; font-size:12px; width:100%; flex-wrap:wrap;">
 
-                  <!-- Center Logo -->
-                  <td style="width:30%; text-align:center; vertical-align:top;">
-                    <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'"
-                         style="max-height:80px; margin-bottom:4px;" />
-                  </td>
+                <!-- Left Side: English -->
+                <div style="width:35%; text-align:left;">
+                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">
+                    SAMEER SHARAF AL OTAIBI TRADING COMPANY
+                  </strong><br/>
+                  C.R.: 4030216154<br/>
+                  VAT Reg.: 311299944700003<br/>
+                  Al Anwar Centre, Showroom No. 12,<br/>
+                  Baladiya Street, Jeddah 23334 - Saudi Arabia<br/>
+                  Tel: 0536122833<br/>
+                  Email: ssaoe.jeddah@gmail.com
+                </div>
 
-                  <!-- Right Side: Arabic -->
-                  <td style="width:35%; text-align:right; vertical-align:top; direction:rtl;">
-                    <strong style="color:#800000; font-size:14px; text-decoration:underline;">
-                      شركة سمير شرف العتيبي التجارية
-                    </strong><br/>
-                    السجل التجاري: 4030216154<br/>
-                    ضريبة القيمة المضافة: 311299944700003<br/>
-                    مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
-                    جدة 23334، المملكة العربية السعودية<br/>
-                    هاتف: 0536122833<br/>
-                    البريد الإلكتروني: ssaoe.jeddah@gmail.com
-                  </td>
-                </tr>
-              </table>
+                <!-- Center Logo -->
+                <div style="width:30%; text-align:center;">
+                  <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'"
+                       style="max-height:80px; margin-bottom:4px;" />
+                </div>
+
+                <!-- Right Side: Arabic -->
+                <div style="width:35%; text-align:right; direction:rtl;">
+                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">
+                    شركة سمير شرف العتيبي التجارية
+                  </strong><br/>
+                  السجل التجاري: 4030216154<br/>
+                  ضريبة القيمة المضافة: 311299944700003<br/>
+                  مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
+                  جدة 23334، المملكة العربية السعودية<br/>
+                  هاتف: 0536122833<br/>
+                  البريد الإلكتروني: ssaoe.jeddah@gmail.com
+                </div>
+
+              </div>
 
               <!-- Tax Invoice Label -->
               <div style="background-color:#800000; color:#fff; text-align:center; font-size:16px; font-weight:bold; padding:6px; border-radius:4px; margin:8px 0;">
@@ -130,27 +130,24 @@
                           <!-- Delivered By -->
                           <td style="width:20%; border:1px solid #000; padding:4px;">
                             <strong>Delivered by</strong><br/>سلمت بواسطة
+                             <strong style="padding:4px;">Received by</strong><br/>استلمت بواسطة
                           </td>
 
-                          <!-- Received By -->
-                          <td style="width:20%; border:1px solid #000; padding:4px;">
-                            <strong>Received by</strong><br/>استلمت بواسطة
-                          </td>
 
                           <!-- Stamp -->
-                          <td style="width:20%; text-align:center; border:1px solid #000;">
-                            <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:100px;" />
+                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:20px">
+                            <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
                           </td>
 
                           <!-- QR Code -->
-                          <td style="width:20%; text-align:center; border:1px solid #000;">
+                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:20px">
                             <t t-if="o.qr_code_image">
-                              <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:100px; max-width:100px;" />
+                              <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px; max-width:100px;" />
                             </t>
                           </td>
 
                           <!-- Totals -->
-                          <td style="width:20%; border:1px solid #000; padding:4px;">
+                          <td style="width:20%;  padding:4px;">
                             <table width="100%" style="font-size:11px;">
                               <tr>
                                 <td>Total Amount :<br/>المبلغ الإجمالي</td>
