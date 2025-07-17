@@ -116,10 +116,11 @@
             <table width="100%" style="font-size:11px; margin-top:8px;">
               <tr>
                 <td style="width:70%; vertical-align:top;">
-                  <strong>QR Code (ZATCA):</strong><br/>
-                  <img t-if="o.qr_code_image"
-                       t-att-src="'data:image/png;base64,%s' % o.qr_code_image"
-                       style="width:120px; height:120px;"/>
+                <strong>QR Code (ZATCA):</strong><br/>
+                    <img t-if="o.qr_code_image"
+                         t-att-src="'data:image/png;base64,%s' % o.qr_code_image"
+                         style="width:120px; height:120px;"/><br/>
+
                   <br/>
                   <strong>Amount in Words:</strong><br/>
                   <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>

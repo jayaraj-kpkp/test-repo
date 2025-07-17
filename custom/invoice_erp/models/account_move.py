@@ -1,21 +1,22 @@
+# models/account_move.py
 from odoo import models, fields, api
 import base64
 import qrcode
 from io import BytesIO
+from datetime import datetime
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    qr_code_image = fields.Binary(
-        string="ZATCA QR Code",
-        compute="_compute_qr_code_image",
-        store=True  # makes recompute automatic
-    )
+    qr_code_image = fields.Binary("QR Code (ZATCA)", compute="_compute_qr_code", store=True)
 
-    @api.depends('company_id.name', 'company_id.vat', 'invoice_date', 'amount_total', 'amount_tax')
-    def _compute_qr_code_image(self):
+    @api.depends('invoice_date', 'amount_total', 'amount_tax', 'company_id.vat')
+    def _compute_qr_code(self):
         for rec in self:
-            rec.qr_code_image = rec._generate_qr_code()
+            if rec.company_id.vat:
+                rec.qr_code_image = rec._generate_qr_code()
+            else:
+                rec.qr_code_image = False
 
     def _generate_qr_code(self):
         self.ensure_one()
@@ -41,6 +42,9 @@ class AccountMove(models.Model):
             _encode_tag(5, vat_total)
         )
         qr_base64 = base64.b64encode(qr_bytes).decode('utf-8')
+
+        # Optional debug log
+        print("Generating QR for:", seller_name, seller_vat, invoice_date, invoice_total, vat_total)
 
         qr = qrcode.QRCode(
             version=1,
