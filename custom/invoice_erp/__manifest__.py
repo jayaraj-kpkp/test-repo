@@ -1,22 +1,3 @@
-# { my old and perfect code use if any issue occurred
-#     "name": "Saudi Invoice Format",
-#     "version": "1.0",
-#     "depends": ["account"],
-#     "author": "Your Company",
-#     "category": "Accounting",
-#     "summary": "Saudi Arabia style tax invoice format",
-#     "description": """
-# Saudi Arabia Tax Invoice with Arabic and English fields, VAT breakdown, and custom layout.
-#     """,
-#     "data": [
-#         "views/report_invoice.xml",
-#         "views/report_action_override.xml",
-#     ],
-#     "installable": True,
-#     "application": False,
-#     "auto_install": False,
-# }
-
 {
     "name": "Saudi Invoice Format",
     "version": "1.0",
@@ -29,9 +10,10 @@ Saudi Arabia Tax Invoice with Arabic and English fields, VAT breakdown, and cust
     """,
     "data": [
         "views/report_invoice.xml",
-        # "views/report_override.xml",
+        "views/report_action_override.xml",
     ],
     "installable": True,
     "application": False,
     "auto_install": False,
 }
+
