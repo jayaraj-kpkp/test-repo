@@ -112,46 +112,73 @@
               </tbody>
             </table>
 
-            <!-- TOTALS -->
-            <table width="100%" style="font-size:11px; margin-top:8px;">
-              <tr>
-                <td style="width:70%; vertical-align:top;">
-               <t t-if="o.qr_code_image">
-                  <div>
-                    <strong>QR Code (ZATCA):</strong><br/>
-              <img t-if="o.qr_code_image" t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:100px; max-width:100px;" />
 
-                  </div>
-                </t>
+           <!-- TOTALS SECTION (Styled Like 2nd Image) -->
+<table width="100%" style="font-size:11px; margin-top:8px; border-collapse:collapse; border:1px solid #000;">
+  <tr>
+    <!-- Delivered By -->
+    <td style="width:25%; border:1px solid #000; padding:4px;">
+      <strong>Delivered by</strong><br/>
+      تم التسليم بواسطة
+    </td>
 
+    <!-- Stamp -->
+    <td style="width:25%; text-align:center; border:1px solid #000;">
+      <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:100px;"/>
+    </td>
 
-                  <br/>
-                  <strong>Amount in Words:</strong><br/>
-                  <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
-                </td>
-                <td style="width:30%; text-align:center; vertical-align:top;">
-                  <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:100px;"/>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <table style="border:1px solid #000; width:300px; float:right;">
-                    <tr>
-                      <td>Net Amount</td>
-                      <td><span t-esc="o.amount_untaxed"/></td>
-                    </tr>
-                    <tr>
-                      <td>VAT 15%</td>
-                      <td><span t-esc="o.amount_tax"/></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Grand Total (Net + VAT)</strong></td>
-                      <td><strong><span t-esc="o.amount_total"/></strong></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
+    <!-- QR Code -->
+    <td style="width:25%; text-align:center; border:1px solid #000;">
+      <t t-if="o.qr_code_image">
+        <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:100px; max-width:100px;" />
+      </t>
+    </td>
+
+    <!-- Totals -->
+    <td style="width:25%; border:1px solid #000; padding:4px;">
+      <table width="100%" style="font-size:11px;">
+        <tr>
+          <td>Total Amount :<br/>المبلغ الإجمالي</td>
+          <td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td>
+        </tr>
+        <tr>
+          <td>Discount :<br/>الخصم</td>
+          <td style="text-align:right;">0.00</td>
+        </tr>
+        <tr>
+          <td>Net Amount :<br/>صافي المبلغ</td>
+          <td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td>
+        </tr>
+        <tr>
+          <td>VAT (15%) :<br/>ضريبة القيمة المضافة</td>
+          <td style="text-align:right;"><span t-esc="o.amount_tax"/></td>
+        </tr>
+        <tr>
+          <td><strong>Grand Total :</strong><br/><strong>المبلغ الإجمالي</strong></td>
+          <td style="text-align:right;"><strong><span t-esc="o.amount_total"/></strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Amount in Words -->
+  <tr>
+    <td colspan="4" style="border-top:1px solid #000; padding:4px;">
+      <strong><span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> only.</strong>
+    </td>
+  </tr>
+
+  <!-- Bank Details -->
+  <tr>
+    <td colspan="4" style="border-top:1px solid #000; padding:4px;">
+      <strong>Bank Details :</strong>
+      SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
+      IBAN : SA29 1000 00 10768366000104<br/>
+      <strong style="float:right;">: التفاصيل المصرفية</strong>
+    </td>
+  </tr>
+</table>
+
 
           </div>
         </main>
