@@ -116,9 +116,13 @@
             <table width="100%" style="font-size:11px; margin-top:8px;">
               <tr>
                 <td style="width:70%; vertical-align:top;">
-                <div t-if="o.qr_code_image">
-                    <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image" style="max-height:100px; max-width:100px;"/>
-                </div>
+               <t t-if="o.qr_code_image">
+                  <div>
+                    <strong>QR Code (ZATCA):</strong><br/>
+                    <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="width:120px; height:120px;"/>
+                  </div>
+                </t>
+
 
                   <br/>
                   <strong>Amount in Words:</strong><br/>
