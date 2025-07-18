@@ -1,0 +1,11 @@
+<odoo>
+  <!-- Deactivate Default Invoice -->
+  <record id="account.account_invoices" model="ir.actions.report">
+    <field name="active">False</field>
+  </record>
+
+  <!-- Deactivate PDF Without Payment Invoice -->
+  <record id="account.account_invoices_without_payment" model="ir.actions.report">
+    <field name="active">False</field>
+  </record>
+</odoo>
