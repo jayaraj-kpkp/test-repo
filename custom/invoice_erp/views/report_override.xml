@@ -2,11 +2,11 @@
 <odoo>
     <!-- Override default invoice print with custom report -->
     <report
-        id="account.account_invoices"  <!-- This ID overrides the default -->
+        id="account.account_invoices"
         model="account.move"
         report_type="qweb-pdf"
-        name="invoice_erp.report_invoice_document_custom_sa"  <!-- Your custom QWeb template ID -->
-        file="invoice_erp.report_invoice_document_custom_sa"  <!-- Your template file -->
+        name="invoice_erp.report_invoice_document_custom_sa"
+        file="invoice_erp.report_invoice_document_custom_sa"
         binding_model="account.move"
         binding_type="report"
     />
