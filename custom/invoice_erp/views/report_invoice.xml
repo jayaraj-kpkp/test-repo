@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="report_invoice_document_custom">
+  <template id="report_invoice_document_custom_sa">
     <t t-call="web.external_layout">
       <t t-foreach="docs" t-as="o">
         <main>
           <div class="page">
-
             <!-- HEADER -->
-                           <!-- INVOICE HEADER -->
            <div style="display: flex; justify-content: space-between; font-size:12px; width:100%; flex-wrap:wrap;">
 
                 <!-- Left Side: English -->
