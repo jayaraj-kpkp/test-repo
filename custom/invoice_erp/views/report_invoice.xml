@@ -67,6 +67,8 @@
                   <span style="display:inline-block; width:20px;"></span>
                   <strong>Invoice Date:</strong>
                   <span t-field="o.invoice_date"/>
+                   <strong>Delivery Date / تاريخ التسليم:</strong>
+                  <span t-field="o.invoice_date_due"/>
                 </td>
               </tr>
               <tr>
