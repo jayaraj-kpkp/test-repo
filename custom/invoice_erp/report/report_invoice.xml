@@ -28,7 +28,8 @@
                 </div>
 
                 <!-- Right Side: Arabic -->
-                <div style="width:35%; text-align:right; direction:rtl;">
+                <!-- Right Side: Arabic -->
+                <div style="flex: 1; min-width:35%; max-width:40%; text-align:right; direction:rtl; word-wrap: break-word;">
                   <strong style="color:#800000; font-size:14px; text-decoration:underline;">
                     شركة سمير شرف العتيبي التجارية
                   </strong><br/>
@@ -86,20 +87,20 @@
             </table>
 
             <!-- INVOICE TABLE -->
-            <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px;">
+            <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px; table-layout: fixed;">
               <thead>
                 <tr style="background-color:#f0f0f0;">
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">S.N<br/>مسلسل</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">ITEM<br/>الصنف</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">DESCRIPTION<br/>الوصف</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">QTY<br/>الكمية</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">UNIT<br/>الوحدة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">S. RATE<br/>سعر الوحدة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">DISC<br/>الخصم</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">AMOUNT<br/>المبلغ</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">VAT%<br/>نسبة ضريبة القيمة المضافة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">VAT<br/>ضريبة</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;">TOTAL PRICE<br/>سعر الإجمالي</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold;width:4%;">S.N<br/>مسلسل</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:15%;">ITEM<br/>الصنف</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:15%;">DESCRIPTION<br/>الوصف</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:6%;">QTY<br/>الكمية</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:6%;">UNIT<br/>الوحدة</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:10%;">S. RATE<br/>سعر الوحدة</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:6%;">DISC<br/>الخصم</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:10%;">AMOUNT<br/>المبلغ</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:7%;">VAT%<br/>نسبة ضريبة القيمة المضافة</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:10%;">VAT<br/>ضريبة</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:12%;">TOTAL PRICE<br/>سعر الإجمالي</th>
                 </tr>
               </thead>
               <tbody>
@@ -126,81 +127,97 @@
               </tbody>
             </table>
 
+            <!-- TOTAL + STAMP + QR SECTION -->
+            <table width="100%" style="margin-top:10px; border-collapse: collapse;">
+              <tr>
+                <!-- Left: Delivery -->
+                <td style="width:25%; vertical-align:top;">
+                  <p>
+                    <strong>Delivered by</strong><br/>
+                    <span>سلمت بواسطة</span><br/><br/>
+                    <strong>Received by</strong><br/>
+                    <span>استلمت بواسطة</span>
+                  </p>
+                </td>
 
-             <!-- TOTALS SECTION -->
-                      <table width="100%" style="font-size:11px; margin-top:8px; border-collapse:collapse; border:1px solid #000;">
-                        <tr>
-                          <!-- Delivered By -->
-                          <td style="width:20%; border:1px solid #000; padding:4px;">
-                            <strong>Delivered by</strong><br/>سلمت بواسطة
-                             <strong style="padding:4px;">Received by</strong><br/>استلمت بواسطة
-                          </td>
+                <!-- Center: Company Stamp -->
+                <td style="width:25%; text-align: center; vertical-align:middle;">
+                  <img t-if="o.company_id.stamp_image" t-att-src="'data:image/png;base64,%s' % o.company_id.stamp_image.decode('utf-8')" style="max-height:80px;"/>
+                </td>
 
+                <!-- Right: QR Code -->
+                <td style="width:20%; text-align:center; vertical-align:middle;">
+                  <img t-if="o.qr_code_image" t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px;"/>
+                </td>
 
-                          <!-- Stamp -->
-                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:20px">
-                            <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
-                          </td>
+                <!-- Totals -->
+                <td style="width:30%; vertical-align:top;">
+                  <table width="100%" style="border-collapse:collapse; font-size:12px;">
+                    <tr>
+                      <td><strong>Total Amount :</strong></td>
+                      <td class="text-right" t-esc="o.amount_untaxed"/>
+                    </tr>
+                    <tr>
+                      <td>المبلغ الإجمالي :</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Discount :</strong></td>
+                      <td class="text-right">0.00</td>
+                    </tr>
+                    <tr>
+                      <td>الخصم :</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Net Amount :</strong></td>
+                      <td class="text-right" t-esc="o.amount_untaxed"/>
+                    </tr>
+                    <tr>
+                      <td>صافي المبلغ :</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>VAT (15%) :</strong></td>
+                      <td class="text-right" t-esc="o.amount_tax"/>
+                    </tr>
+                    <tr>
+                      <td>ضريبة القيمة المضافة :</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Grand Total :</strong></td>
+                      <td class="text-right" t-esc="o.amount_total"/>
+                    </tr>
+                    <tr>
+                      <td><strong>المبلغ الإجمالي :</strong></td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
 
-                          <!-- QR Code -->
-                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:20px">
-                            <t t-if="o.qr_code_image">
-                              <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px; max-width:100px;" />
-                            </t>
-                          </td>
+            <!-- AMOUNT IN WORDS -->
+            <p style="font-size:12px; margin-top:8px;">
+              <strong t-if="o.currency_id and o.amount_total">
+                <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> only.
+              </strong>
+            </p>
 
-                          <!-- Totals -->
-                          <td style="width:20%;  padding:4px;">
-                            <table width="100%" style="font-size:11px;">
-                              <tr>
-                                <td>Total Amount :<br/>المبلغ الإجمالي</td>
-                                <td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td>
-                              </tr>
-                              <tr>
-                                <td>Discount :<br/>الخصم</td>
-                                <td style="text-align:right;">0.00</td>
-                              </tr>
-                              <tr>
-                                <td>Net Amount :<br/>صافي المبلغ</td>
-                                <td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td>
-                              </tr>
-                              <tr>
-                                <td>VAT (15%) :<br/>ضريبة القيمة المضافة</td>
-                                <td style="text-align:right;"><span t-esc="o.amount_tax"/></td>
-                              </tr>
-                              <tr>
-                                <td><strong>Grand Total :</strong><br/><strong>المبلغ الإجمالي</strong></td>
-                                <td style="text-align:right;"><strong><span t-esc="o.amount_total"/></strong></td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-
-                        <!-- Amount in Words -->
-                        <tr>
-                          <td colspan="5" style="border-top:1px solid #000; padding:4px;">
-                            <strong><span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> only.</strong>
-                          </td>
-                        </tr>
-
-                        <!-- Bank Details -->
-                        <tr>
-                          <td colspan="5" style="border-top:1px solid #000; padding:4px;">
-                            <div style="display:flex; justify-content:space-between;">
-                              <div>
-                                <strong>Bank Details :</strong><br/>
-                                SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
-                                IBAN : SA29 1000 00 10768366000104
-                              </div>
-                              <div style="text-align:right;">
-                                <strong>: التفاصيل المصرفية</strong>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-
-
+            <!-- BANK DETAILS -->
+            <table width="100%" style="margin-top:6px; font-size:12px; border:1px solid #000; border-collapse:collapse;">
+              <tr>
+                <td style="padding:4px;">
+                  <strong>Bank Details :</strong><br/>
+                  SNB Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.<br/>
+                  IBAN: SA29 1000 00 10768366000104
+                </td>
+                <td style="text-align:right; direction:rtl; padding:4px;">
+                  <strong> : التفاصيل المصرفية</strong>
+                </td>
+              </tr>
+            </table>
 
           </div>
         </main>
