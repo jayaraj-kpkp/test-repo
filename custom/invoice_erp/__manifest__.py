@@ -12,6 +12,7 @@ Saudi Arabia Tax Invoice with Arabic and English fields, VAT breakdown, and cust
         "views/report_invoice.xml",
         "views/report_action_override.xml",
          "views/reports.xml",
+        "views/report_override.xml",
     ],
     "installable": True,
     "application": False,
