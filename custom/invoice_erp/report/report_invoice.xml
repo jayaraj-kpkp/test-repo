@@ -142,7 +142,7 @@
 
                 <!-- Center: Company Stamp -->
                 <td style="width:25%; text-align: center; vertical-align:middle;">
-                  <img t-if="o.company_id.stamp_image" t-att-src="'data:image/png;base64,%s' % o.company_id.stamp_image.decode('utf-8')" style="max-height:80px;"/>
+                   <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
                 </td>
 
                 <!-- Right: QR Code -->
