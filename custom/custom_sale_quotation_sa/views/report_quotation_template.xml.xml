@@ -1,26 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="report_sale-order_document_custom">
+  <template id="report_saleorder_document_custom">
     <t t-call="web.external_layout">
       <t t-foreach="docs" t-as="o">
         <div class="page">
-          <!-- Custom Header -->
           <h2 style="text-align:center; color:#800000;">
             <strong>Sales Quotation<br/>عرض سعر</strong>
           </h2>
-
-          <!-- Customer and Order Info -->
           <p><strong>Customer:</strong> <span t-esc="o.partner_id.name"/></p>
           <p><strong>Date:</strong> <span t-esc="o.date_order"/></p>
-
-          <!-- Table of products -->
-          <table class="table table-sm">
+          <table class="table table-sm" style="width:100%; border-collapse:collapse;">
             <thead>
               <tr>
-                <th>Product</th>
-                <th>Description</th>
-                <th>Qty</th>
-                <th>Unit Price</th>
-                <th>Subtotal</th>
+                <th>Product</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Subtotal</th>
               </tr>
             </thead>
             <tbody>
@@ -33,8 +25,6 @@
               </tr>
             </tbody>
           </table>
-
-          <!-- Totals -->
           <p><strong>Total:</strong> <span t-esc="o.amount_total"/></p>
         </div>
       </t>

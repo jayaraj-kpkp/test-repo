@@ -1,11 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <report
-    id="action_report_sale-order_custom"
+    id="action_report_saleorder_custom"
     model="sale.order"
     string="Custom Quotation"
     report_type="qweb-pdf"
-    name="custom_sale_quotation_sa.report_sale-order_document_custom"
-    file="custom_sale_quotation_sa.report_sale-order_document_custom"
+    name="custom_sale_quotation_sa.report_saleorder_document_custom"
+    file="custom_sale_quotation_sa.report_saleorder_document_custom"
     print_report_name="'Custom Quotation - %s' % (object.name)"
   />
 </odoo>
+
