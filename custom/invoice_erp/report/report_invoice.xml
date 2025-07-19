@@ -106,9 +106,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="loop">
-                  <td style="border:1px solid #000; padding:4px;" t-esc="loop.index"/>
-
+                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
+                  <td style="border:1px solid #000; padding:4px;" t-esc="(0 if i is None else i + 1)"/>
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.display_name or ''"/>
                   <td style="border:1px solid #000; padding:4px;">
                     <t t-if="line.name and line.name != line.product_id.display_name">

@@ -1,0 +1,36 @@
+<odoo>
+  <record id="view_invoice_dashboard_form" model="ir.ui.view">
+    <field name="name">invoice.dashboard.form</field>
+    <field name="model">invoice.dashboard</field>
+    <field name="arch" type="xml">
+      <form string="Invoice Dashboard">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="total_invoices" readonly="1"/>
+            <field name="total_amount" readonly="1"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_invoice_dashboard" model="ir.actions.act_window">
+    <field name="name">Invoice Dashboard</field>
+    <field name="res_model">invoice.dashboard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_invoice_dashboard_form"/>
+    <field name="target">current</field>
+  </record>
+
+  <menuitem id="menu_invoice_dashboard_root"
+            name="Dashboard"
+            sequence="10"
+            parent="account.menu_finance"/>
+
+  <menuitem id="menu_invoice_dashboard"
+            name="Invoice Dashboard"
+            parent="menu_invoice_dashboard_root"
+            action="action_invoice_dashboard"
+            sequence="20"/>
+</odoo>
