@@ -33,12 +33,14 @@
                   <strong style="color:#800000; font-size:14px; text-decoration:underline;">
                     شركة سمير شرف العتيبي التجارية
                   </strong><br/>
+                  <strong>
                   السجل التجاري: 4030216154<br/>
                   ضريبة القيمة المضافة: 311299944700003<br/>
                   مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
                   جدة 23334، المملكة العربية السعودية<br/>
                   هاتف: 0536122833<br/>
                   البريد الإلكتروني: ssaoe.jeddah@gmail.com
+                  </strong>
                 </div>
 
               </div>
@@ -104,8 +106,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="i">
-                  <td style="border:1px solid #000; padding:4px;" t-esc="(0 if i is None else i + 1)"/>
+                <tr t-foreach="o.invoice_line_ids" t-as="line" t-foreach-index="loop">
+                  <td style="border:1px solid #000; padding:4px;" t-esc="loop.index"/>
+
                   <td style="border:1px solid #000; padding:4px;" t-esc="line.product_id.display_name or ''"/>
                   <td style="border:1px solid #000; padding:4px;">
                     <t t-if="line.name and line.name != line.product_id.display_name">
@@ -127,97 +130,81 @@
               </tbody>
             </table>
 
-            <!-- TOTAL + STAMP + QR SECTION -->
-            <table width="100%" style="margin-top:10px; border-collapse: collapse;">
-              <tr>
-                <!-- Left: Delivery -->
-                <td style="width:25%; vertical-align:top;">
-                  <p>
-                    <strong>Delivered by</strong><br/>
-                    <span>سلمت بواسطة</span><br/><br/>
-                    <strong>Received by</strong><br/>
-                    <span>استلمت بواسطة</span>
-                  </p>
-                </td>
 
-                <!-- Center: Company Stamp -->
-                <td style="width:25%; text-align: center; vertical-align:middle;">
-                   <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
-                </td>
+             <!-- TOTALS SECTION -->
+                      <table width="100%" style="font-size:11px; margin-top:8px; border-collapse:collapse; border:1px solid #000;">
+                        <tr>
+                          <!-- Delivered By -->
+                          <td style="width:20%; border:1px solid #000; padding:4px;">
+                            <strong>Delivered by</strong><br/>سلمت بواسطة
+                             <strong style="padding:4px;">Received by</strong><br/>استلمت بواسطة
+                          </td>
 
-                <!-- Right: QR Code -->
-                <td style="width:20%; text-align:center; vertical-align:middle;">
-                  <img t-if="o.qr_code_image" t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px;"/>
-                </td>
 
-                <!-- Totals -->
-                <td style="width:30%; vertical-align:top;">
-                  <table width="100%" style="border-collapse:collapse; font-size:12px;">
-                    <tr>
-                      <td><strong>Total Amount :</strong></td>
-                      <td class="text-right" t-esc="o.amount_untaxed"/>
-                    </tr>
-                    <tr>
-                      <td>المبلغ الإجمالي :</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Discount :</strong></td>
-                      <td class="text-right">0.00</td>
-                    </tr>
-                    <tr>
-                      <td>الخصم :</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Net Amount :</strong></td>
-                      <td class="text-right" t-esc="o.amount_untaxed"/>
-                    </tr>
-                    <tr>
-                      <td>صافي المبلغ :</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td><strong>VAT (15%) :</strong></td>
-                      <td class="text-right" t-esc="o.amount_tax"/>
-                    </tr>
-                    <tr>
-                      <td>ضريبة القيمة المضافة :</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td><strong>Grand Total :</strong></td>
-                      <td class="text-right" t-esc="o.amount_total"/>
-                    </tr>
-                    <tr>
-                      <td><strong>المبلغ الإجمالي :</strong></td>
-                      <td></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
+                          <!-- Stamp -->
+                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:20px">
+                            <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
+                          </td>
 
-            <!-- AMOUNT IN WORDS -->
-            <p style="font-size:12px; margin-top:8px;">
-              <strong t-if="o.currency_id and o.amount_total">
-                <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> only.
-              </strong>
-            </p>
+                          <!-- QR Code -->
+                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:20px">
+                            <t t-if="o.qr_code_image">
+                              <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px; max-width:100px;" />
+                            </t>
+                          </td>
 
-            <!-- BANK DETAILS -->
-            <table width="100%" style="margin-top:6px; font-size:12px; border:1px solid #000; border-collapse:collapse;">
-              <tr>
-                <td style="padding:4px;">
-                  <strong>Bank Details :</strong><br/>
-                  SNB Beneficiary Name: Sameer Sharaf Al-Otaibi Trading Co.<br/>
-                  IBAN: SA29 1000 00 10768366000104
-                </td>
-                <td style="text-align:right; direction:rtl; padding:4px;">
-                  <strong> : التفاصيل المصرفية</strong>
-                </td>
-              </tr>
-            </table>
+                          <!-- Totals -->
+                          <td style="width:20%;  padding:4px;">
+                            <table width="100%" style="font-size:11px;">
+                              <tr>
+                                <td>Total Amount :<br/>المبلغ الإجمالي</td>
+                                <td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td>
+                              </tr>
+                              <tr>
+                                <td>Discount :<br/>الخصم</td>
+                                <td style="text-align:right;">0.00</td>
+                              </tr>
+                              <tr>
+                                <td>Net Amount :<br/>صافي المبلغ</td>
+                                <td style="text-align:right;"><span t-esc="o.amount_untaxed"/></td>
+                              </tr>
+                              <tr>
+                                <td>VAT (15%) :<br/>ضريبة القيمة المضافة</td>
+                                <td style="text-align:right;"><span t-esc="o.amount_tax"/></td>
+                              </tr>
+                              <tr>
+                                <td><strong>Grand Total :</strong><br/><strong>المبلغ الإجمالي</strong></td>
+                                <td style="text-align:right;"><strong><span t-esc="o.amount_total"/></strong></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+
+                        <!-- Amount in Words -->
+                        <tr>
+                          <td colspan="5" style="border-top:1px solid #000; padding:4px;">
+                            <strong><span t-esc="o.currency_id.amount_to_text(o.amount_total)"/> only.</strong>
+                          </td>
+                        </tr>
+
+                        <!-- Bank Details -->
+                        <tr>
+                          <td colspan="5" style="border-top:1px solid #000; padding:4px;">
+                            <div style="display:flex; justify-content:space-between;">
+                              <div>
+                                <strong>Bank Details :</strong><br/>
+                                SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
+                                IBAN : SA29 1000 00 10768366000104
+                              </div>
+                              <div style="text-align:right;">
+                                <strong>: التفاصيل المصرفية</strong>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+
+
 
           </div>
         </main>
