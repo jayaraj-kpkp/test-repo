@@ -13,7 +13,7 @@ by choosing product variants quantity through a Grid Entry.
     'data': [
         'views/product_template_views.xml',
         'views/sale_order_views.xml',
-        'report/sale_report_templates.xml',
+        'report/report_quotation_template.xml.xml',
     ],
     'demo': [
         'data/product_matrix_demo.xml'
