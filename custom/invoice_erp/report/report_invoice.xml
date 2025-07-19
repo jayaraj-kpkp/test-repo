@@ -79,7 +79,11 @@
               </tr>
               <tr>
                 <td colspan="2" style="border:1px solid #000; padding:4px;">
-                  <strong>P.O No / رقم أمر الشراء :</strong>
+<!--                  <strong>P.O No / رقم أمر الشراء :</strong>-->
+                  <t t-if="o.po_number">
+                  <p><strong>P.O Number:</strong> <span t-esc="o.po_number"/></p>
+                </t>
+
                   <span style="display:inline-block; min-width:40px;"></span>
                   <strong>Terms / الشروط :</strong>
                   <span style="display:inline-block; min-width:40px;"></span>
