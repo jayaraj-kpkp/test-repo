@@ -1,19 +1,29 @@
 <odoo>
-  <!-- Custom Report in Dropdown -->
-  <record id="action_report_invoice_custom" model="ir.actions.report">
-    <field name="name">Custom Invoice</field>
-    <field name="model">account.move</field>
-    <field name="report_type">qweb-pdf</field>
-    <field name="report_name">invoice_erp.report_invoice_document_custom_sa</field>
-    <field name="report_file">invoice_erp.report_invoice_document_custom_sa</field>
-    <field name="print_report_name">'Custom Invoice - %s' % (object.name)</field>
-    <field name="binding_model_id" ref="account.model_account_move"/>
-    <field name="binding_type">report</field>
-  </record>
+  <data>
 
-  <!-- Override Default Print Invoice -->
-  <record id="account_invoices" model="ir.actions.report">
-    <field name="report_name">invoice_erp.report_invoice_document_custom_sa</field>
-    <field name="report_file">invoice_erp.report_invoice_document_custom_sa</field>
-  </record>
+    <!-- Custom Report in Dropdown -->
+    <record id="action_report_invoice_custom" model="ir.actions.report">
+      <field name="name">Custom Invoice</field>
+      <field name="model">account.move</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">invoice_erp.report_invoice_document_custom_sa</field>
+      <field name="report_file">invoice_erp.report_invoice_document_custom_sa</field>
+      <field name="print_report_name">'Custom Invoice - %s' % (object.name)</field>
+      <field name="binding_model_id" ref="account.model_account_move"/>
+      <field name="binding_type">report</field>
+    </record>
+
+    <!-- Override Default Print Invoice -->
+    <record id="account.report_invoice" model="ir.actions.report">
+      <field name="name">Customer Invoice</field>
+      <field name="model">account.move</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">invoice_erp.report_invoice_document_custom_sa</field>
+      <field name="report_file">invoice_erp.report_invoice_document_custom_sa</field>
+      <field name="binding_model_id" ref="account.model_account_move"/>
+      <field name="binding_type">report</field>
+    </record>
+
+  </data>
 </odoo>
+
