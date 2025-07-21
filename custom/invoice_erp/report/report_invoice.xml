@@ -6,49 +6,41 @@
         <main>
           <div class="page">
             <!-- HEADER -->
-           <div style="display: flex; justify-content: space-between; font-size:12px; width:100%; flex-wrap:wrap;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 2px solid #800000;">
 
-                <!-- Left Side: English -->
-                <div style="width:35%; text-align:left;">
-                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">
-                    SAMEER SHARAF AL OTAIBI TRADING COMPANY
-                  </strong><br/>
-                  C.R.: 4030216154<br/>
-                  VAT Reg.: 311299944700003<br/>
-                  Al Anwar Centre, Showroom No. 12,<br/>
-                  Baladiya Street, Jeddah 23334 - Saudi Arabia<br/>
-                  Tel: 0536122833<br/>
-                  Email: ssaoe.jeddah@gmail.com
-                </div>
+        <!-- LEFT SIDE (ENGLISH) -->
+        <div style="text-align: left; font-size: 13px;">
+          <strong style="font-size: 16px; color: #800000;">SAMEER SHARAF AL OTAIBI TRADING COMPANY</strong><br/>
+          C.R. 4030216154<br/>
+          VAT Regd: 311299944700003<br/>
+          Al Anwar Centre, Showroom No. 12,<br/>
+          Baladiya Street, Jeddah 23334 - Saudi Arabia<br/>
+          Tel: 0536122833<br/>
+          Email: ssaoe.jeddah@gmail.com
+        </div>
 
-                <!-- Center Logo -->
-                <div style="width:50%; text-align:center;">
-                  <img t-att-src="'/invoice_erp/static/src/img/faakart_logo.png'"
-                       style="max-height:80px; margin-bottom:4px;" />
-                </div>
+        <!-- CENTER (LOGO) -->
+        <div style="text-align: center;">
+          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 80px;"/>
+        </div>
 
-                <!-- Right Side: Arabic -->
-                <!-- Right Side: Arabic -->
-                <div style="flex: 1; min-width:35%; max-width:40%; text-align:right; direction:rtl; word-wrap: break-word;">
-                  <strong style="color:#800000; font-size:14px; text-decoration:underline;">
-                    شركة سمير شرف العتيبي التجارية
-                  </strong><br/>
-                  <strong style="margin-right:20px;">
-                  السجل التجاري: 4030216154<br/>
-                  ضريبة القيمة المضافة: 311299944700003<br/>
-                  مركز الأنوار، معرض رقم 12، شارع البلدية<br/>
-                  جدة 23334، المملكة العربية السعودية<br/>
-                  هاتف: 0536122833<br/>
-                  البريد الإلكتروني: ssaoe.jeddah@gmail.com
-                  </strong>
-                </div>
+        <!-- RIGHT SIDE (ARABIC) -->
+        <div style="text-align: right; direction: rtl; font-size: 13px;">
+          <strong style="font-size: 16px; color: #800000;">شركة سمير شرف العتيبي التجارية</strong><br/>
+          السجل: ٤٠٣٠٢١٦١٥٤<br/>
+          رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
+          مركز الأنوار، رقم محل ١٢ شارع البلدية<br/>
+          ٢٣٣٣٤ - المملكة العربية السعودية<br/>
+          الهاتف: ٠٥٣٦١٢٢٨٣٣<br/>
+          البريد الإلكتروني: ssaoe.jeddah@gmail.com
+        </div>
 
-              </div>
+      </div>
 
-              <!-- Tax Invoice Label -->
-              <div style="background-color:#800000; color:#fff; text-align:center; font-size:16px; font-weight:bold; padding:6px; border-radius:4px; margin:8px 0;">
-                Tax Invoice / فاتورة ضريبية
-              </div>
+      <!-- TAX INVOICE BAR -->
+      <div style="background-color: #800000; color: white; text-align: center; font-size: 14px; font-weight: bold; padding: 4px; margin-top: 6px;">
+        Tax Invoice / فاتورة ضريبية
+      </div>
 
 
             <!-- CUSTOMER INFO -->
@@ -73,8 +65,11 @@
                   <span t-field="o.invoice_date"/>&#160;&#160;
 
 
-                   <strong>Delivery Date / تاريخ التسليم:</strong>
-                  <span t-field="o.invoice_date_due"/>
+                  <strong>Delivery Date / تاريخ التسليم:</strong>
+                  <t t-if="o.invoice_origin">
+                    <span t-esc="o.env['sale.order'].search([('name', '=', o.invoice_origin)], limit=1).commitment_date"/>
+                  </t>
+
                 </td>
               </tr>
               <tr>
@@ -196,8 +191,10 @@
                             <div style="display:flex; justify-content:space-between;">
                               <div>
                                 <strong>Bank Details :</strong><br/>
+                                <strong style="text-align:center">
                                 SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
                                 IBAN : SA29 1000 00 10768366000104
+                                 </strong>
                               </div>
                               <div style="text-align:right;">
                                 <strong>: التفاصيل المصرفية</strong>
