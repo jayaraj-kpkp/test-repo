@@ -20,19 +20,21 @@
         </div>
 
         <!-- CENTER (LOGO) -->
-        <div style="text-align: center;">
+        <div style="text-align: center; width:30%;">
           <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 80px;"/>
         </div>
 
         <!-- RIGHT SIDE (ARABIC) -->
-        <div style="text-align: 250px; direction: rtl; font-size: 13px;">
+        <div style="text-align:right; direction: rtl; font-size: 13px;">
           <strong style="font-size: 16px; color: #800000;">شركة سمير شرف العتيبي التجارية</strong><br/>
+          <strong style="font-size: 14px;" >
           السجل: ٤٠٣٠٢١٦١٥٤<br/>
           رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
           مركز الأنوار، رقم محل ١٢ شارع البلدية<br/>
           ٢٣٣٣٤ - المملكة العربية السعودية<br/>
           الهاتف: ٠٥٣٦١٢٢٨٣٣<br/>
           البريد الإلكتروني: ssaoe.jeddah@gmail.com
+          </strong>
         </div>
 
       </div>
