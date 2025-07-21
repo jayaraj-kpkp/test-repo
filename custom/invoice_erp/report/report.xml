@@ -2,15 +2,17 @@
 <odoo>
   <data>
 
-
+    <!-- Override the default invoice print template -->
     <record id="account.account_invoices" model="ir.actions.report">
-      <field name="binding_model_id" eval="False"/>
+      <field name="report_name">invoice_erp.report_invoice_document_custom_sa</field>
+      <field name="report_file">invoice_erp.report_invoice_document_custom_sa</field>
     </record>
 
+    <!-- Optional: override the 'without payment' template too -->
     <record id="account.account_invoices_without_payment" model="ir.actions.report">
-      <field name="binding_model_id" eval="False"/>
+      <field name="report_name">invoice_erp.report_invoice_document_custom_sa</field>
+      <field name="report_file">invoice_erp.report_invoice_document_custom_sa</field>
     </record>
 
   </data>
 </odoo>
-
