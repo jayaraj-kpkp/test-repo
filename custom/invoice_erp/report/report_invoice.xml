@@ -3,6 +3,7 @@
   <template id="report_invoice_document_custom_sa">
     <t t-call="web.external_layout">
       <t t-foreach="docs" t-as="o">
+          <t t-if="o.move_type == 'out_invoice'">
         <main>
           <div class="page">
             <!-- HEADER -->
@@ -20,14 +21,14 @@
         </div>
 
         <!-- CENTER (LOGO) -->
-        <div style="text-align: center; width:30%;">
-          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 80px;"/>
+        <div style="text-align: center; width:50%;">
+          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 40px;"/>
         </div>
 
         <!-- RIGHT SIDE (ARABIC) -->
         <div style="text-align:right; direction: rtl; font-size: 13px;">
           <strong style="font-size: 16px; color: #800000;">شركة سمير شرف العتيبي التجارية</strong><br/>
-          <strong style="font-size: 14px;padding-right:10px;margin-left:10px;" >
+          <strong style=" direction: rtl; text-align: right; font-size: 14px;padding-right:25px;margin-left:25px;" >
           السجل: ٤٠٣٠٢١٦١٥٤<br/>
           رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
           مركز الأنوار، رقم محل ١٢ شارع البلدية<br/>
@@ -55,19 +56,20 @@
               </tr>
               <tr>
                 <td style="border:1px solid #000; padding:4px;">
-                  <strong>VAT No:</strong>&#160;&#160;
-                  <span t-field="o.partner_id.vat"/>
+                  <strong>VAT No : <span t-field="o.partner_id.vat"/>	الرقم الضريبي:</strong>&#160;&#160;
+
                 </td>
                 <td style="border:1px solid #000; padding:4px;">
-                  <strong>Invoice No:</strong>&#160;&#160;
+                  <strong>Invoice No: <span t-field="o.name"/>	رقم الفاتورة:</strong>&#160;&#160;
 
-                  <span t-field="o.name"/>
+
                   <span style="display:inline-block; width:20px;"></span>
-                  <strong>Invoice Date:</strong>
-                  <span t-field="o.invoice_date"/>&#160;&#160;
+                  <strong>Invoice Date: <span t-field="o.invoice_date"/> تاريخ الفاتورة:</strong>
 
 
+                  <strong>Delivery Date:</strong>
                  <t t-if="o.delivery_date">
+                    <span style="display:inline-block; width:20px;"></span>
                   <span t-esc="o.delivery_date"/>
                 </t>
                 <t t-elif="o.invoice_origin">
@@ -81,7 +83,7 @@
                 <td colspan="2" style="border:1px solid #000; padding:4px;">
 <!--                  <strong>P.O No / رقم أمر الشراء :</strong>-->
                   <t t-if="o.po_number">
-                  <p><strong>P.O Number:</strong> <span t-esc="o.po_number"/></p>
+                  <p><strong>P.O Number:<span t-esc="o.po_number"/>رقم أمر الشراء:</strong> </p>
                 </t>
 
                   <span style="display:inline-block; min-width:40px;"></span>
@@ -149,12 +151,12 @@
 
 
                           <!-- Stamp -->
-                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:10px">
+                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:40px">
                             <img t-att-src="'/invoice_erp/static/src/img/stamp.png'" style="max-height:80px;" />
                           </td>
 
                           <!-- QR Code -->
-                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:10px">
+                          <td style="width:20%; text-align:center; border:1px solid #000; margin-top:40px">
                             <t t-if="o.qr_code_image">
                               <img t-att-src="'data:image/png;base64,%s' % o.qr_code_image.decode('utf-8')" style="max-height:80px; max-width:100px;" />
                             </t>
@@ -200,7 +202,7 @@
                             <div style="display:flex; justify-content:space-between;">
                               <div>
                                 <strong>Bank Details :</strong><br/>
-                                <strong style="text-align:center">
+                                <strong style="margin-left:45px">
                                 SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
                                 IBAN : SA29 1000 00 10768366000104
                                  </strong>
@@ -218,6 +220,7 @@
           </div>
         </main>
       </t>
+    </t>
     </t>
   </template>
 </odoo>
