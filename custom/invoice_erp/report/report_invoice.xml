@@ -223,8 +223,13 @@
           </div>
 
       </t>
+         <t t-else="">
+        <t t-call="account.report_invoice_document"/>
+      </t>
     </t>
+
       </main>
     </t>
+
   </template>
 </odoo>

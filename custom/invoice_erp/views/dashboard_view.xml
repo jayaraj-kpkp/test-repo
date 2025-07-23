@@ -1,4 +1,5 @@
 <odoo>
+  <!-- Form View -->
   <record id="view_invoice_dashboard_form" model="ir.ui.view">
     <field name="name">invoice.dashboard.form</field>
     <field name="model">invoice.dashboard</field>
@@ -15,6 +16,7 @@
     </field>
   </record>
 
+  <!-- Action -->
   <record id="action_invoice_dashboard" model="ir.actions.act_window">
     <field name="name">Invoice Dashboard</field>
     <field name="res_model">invoice.dashboard</field>
@@ -23,14 +25,24 @@
     <field name="target">current</field>
   </record>
 
-  <menuitem id="menu_invoice_dashboard_root"
-            name="Dashboard"
-            sequence="10"
-            parent="account.menu_finance"/>
-
-  <menuitem id="menu_invoice_dashboard"
+  <!-- Menu under Invoicing -->
+  <menuitem id="menu_invoice_dashboard_invoicing"
             name="Invoice Dashboard"
-            parent="menu_invoice_dashboard_root"
+            parent="account.menu_finance"
             action="action_invoice_dashboard"
             sequence="20"/>
+
+  <!-- Menu under Sales -->
+  <menuitem id="menu_invoice_dashboard_sales"
+            name="Invoice Dashboard"
+            parent="sale.sale_order_menu"
+            action="action_invoice_dashboard"
+            sequence="21"/>
+
+  <!-- Menu under Purchases -->
+  <menuitem id="menu_invoice_dashboard_purchases"
+            name="Invoice Dashboard"
+            parent="purchase.menu_purchase_root"
+            action="action_invoice_dashboard"
+            sequence="22"/>
 </odoo>
