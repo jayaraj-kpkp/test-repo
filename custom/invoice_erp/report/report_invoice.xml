@@ -222,7 +222,7 @@
           </div>
              </main>
           </t>
-          <t t-else>
+          <t t-else="">
             <!-- ✅ Fallback to default template for vendor bills -->
             <t t-call="account.report_invoice_document"/>
           </t>
