@@ -1,7 +1,7 @@
 {
     "name": "Saudi Invoice Format",
     "version": "1.0",
-    "depends": ["account", "sale"],
+    "depends": ["account", "sale", "sale_management"],
     "author": "Your Company",
     "category": "Accounting",
     "summary": "Saudi Arabia style tax invoice format",
