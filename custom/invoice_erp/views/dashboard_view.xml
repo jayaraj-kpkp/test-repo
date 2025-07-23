@@ -16,8 +16,26 @@
     </field>
   </record>
 
-  <!-- Action -->
-  <record id="action_invoice_dashboard" model="ir.actions.act_window">
+  <!-- Action for Invoicing -->
+  <record id="action_invoice_dashboard_invoicing" model="ir.actions.act_window">
+    <field name="name">Invoice Dashboard</field>
+    <field name="res_model">invoice.dashboard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_invoice_dashboard_form"/>
+    <field name="target">current</field>
+  </record>
+
+  <!-- Action for Sales -->
+  <record id="action_invoice_dashboard_sales" model="ir.actions.act_window">
+    <field name="name">Invoice Dashboard</field>
+    <field name="res_model">invoice.dashboard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_invoice_dashboard_form"/>
+    <field name="target">current</field>
+  </record>
+
+  <!-- Action for Purchases -->
+  <record id="action_invoice_dashboard_purchases" model="ir.actions.act_window">
     <field name="name">Invoice Dashboard</field>
     <field name="res_model">invoice.dashboard</field>
     <field name="view_mode">form</field>
@@ -29,20 +47,20 @@
   <menuitem id="menu_invoice_dashboard_invoicing"
             name="Invoice Dashboard"
             parent="account.menu_finance"
-            action="action_invoice_dashboard"
+            action="action_invoice_dashboard_invoicing"
             sequence="20"/>
 
   <!-- Menu under Sales -->
   <menuitem id="menu_invoice_dashboard_sales"
             name="Invoice Dashboard"
             parent="sale.sale_order_menu"
-            action="action_invoice_dashboard"
+            action="action_invoice_dashboard_sales"
             sequence="21"/>
 
   <!-- Menu under Purchases -->
   <menuitem id="menu_invoice_dashboard_purchases"
             name="Invoice Dashboard"
             parent="purchase.menu_purchase_root"
-            action="action_invoice_dashboard"
+            action="action_invoice_dashboard_purchases"
             sequence="22"/>
 </odoo>

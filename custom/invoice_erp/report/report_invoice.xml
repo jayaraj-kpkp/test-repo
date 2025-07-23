@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <template id="report_invoice_document_custom_sa">
     <t t-call="web.external_layout">
-        <main>
       <t t-foreach="docs" t-as="o">
-          <t t-if="o.move_type == 'out_invoice'">
 
+          <t t-if="o.move_type == 'out_invoice'">
+            <main>
           <div class="page">
             <!-- HEADER -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 2px solid #800000;">
@@ -23,13 +22,13 @@
 
         <!-- CENTER (LOGO) -->
         <div style="text-align: center; ">
-          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 100px;"/>
+          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 100px;padding-left:20px;"/>
         </div>
 
         <!-- RIGHT SIDE (ARABIC) -->
         <div style="text-align:right; direction: rtl; font-size: 13px;">
           <strong style="font-size: 16px; color: #800000;">شركة سمير شرف العتيبي التجارية</strong><br/>
-          <strong style=" direction: rtl; text-align: right; font-size: 14px;padding-right:45px;margin-left:45px;" >
+          <strong style="  font-size: 14px;margin-left:45px;" >
           السجل: ٤٠٣٠٢١٦١٥٤<br/>
           رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
           مركز الأنوار، رقم محل ١٢ شارع البلدية<br/>
@@ -221,15 +220,16 @@
 
 
           </div>
+             </main>
+          </t>
+          <t t-else>
+            <!-- ✅ Fallback to default template for vendor bills -->
+            <t t-call="account.report_invoice_document"/>
+          </t>
 
       </t>
-         <t t-else="">
-        <t t-call="account.report_invoice_document"/>
-      </t>
     </t>
-
-      </main>
-    </t>
-
   </template>
 </odoo>
+
+
