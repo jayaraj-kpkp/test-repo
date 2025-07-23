@@ -1,0 +1,12 @@
+<odoo>
+  <record id="action_report_vendor_bill_custom" model="ir.actions.report">
+    <field name="name">Vendor Bill</field>
+    <field name="model">account.move</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">custom_vendor_bill.report_vendor_bill_document</field>
+    <field name="report_file">custom_vendor_bill.report_vendor_bill_document</field>
+    <field name="binding_model_id" ref="account.model_account_move"/>
+    <field name="binding_type">report</field>
+    <field name="print_report_name">'Vendor Bill - %s' % (object.name)</field>
+  </record>
+</odoo>

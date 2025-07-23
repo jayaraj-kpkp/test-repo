@@ -2,9 +2,9 @@
   <template id="report_invoice_document_custom_sa">
     <t t-call="web.external_layout">
       <t t-foreach="docs" t-as="o">
-
+      <main>
           <t t-if="o.move_type == 'out_invoice'">
-            <main>
+
           <div class="page">
             <!-- HEADER -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 2px solid #800000;">
@@ -220,12 +220,10 @@
 
 
           </div>
-             </main>
+
           </t>
-          <t t-else="">
-            <!-- ✅ Fallback to default template for vendor bills -->
-            <t t-call="account.report_invoice_document"/>
-          </t>
+       </main>
+
 
       </t>
     </t>
