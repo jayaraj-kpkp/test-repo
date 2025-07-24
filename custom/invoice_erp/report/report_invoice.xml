@@ -22,20 +22,20 @@
 
         <!-- CENTER (LOGO) -->
         <div style="text-align: center; ">
-          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 100px;padding-left:10px;"/>
+          <img src="/invoice_erp/static/src/img/faakart_logo.png" style="height: 80px;"/>
         </div>
 
         <!-- RIGHT SIDE (ARABIC) -->
         <div style="text-align:right; direction: rtl; font-size: 13px;">
           <strong style="font-size: 16px; color: #800000;">شركة سمير شرف العتيبي التجارية</strong><br/>
-          <strong style="  font-size: 14px;margin-left:45px;" >
+          <div style=" font-size:14px; margin-left:45px;" >
           السجل: ٤٠٣٠٢١٦١٥٤<br/>
           رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
           مركز الأنوار، رقم محل ١٢ شارع البلدية<br/>
           ٢٣٣٣٤ - المملكة العربية السعودية<br/>
           الهاتف: ٠٥٣٦١٢٢٨٣٣<br/>
           البريد الإلكتروني: ssaoe.jeddah@gmail.com
-          </strong>
+          </div>
         </div>
 
       </div>
@@ -47,54 +47,51 @@
 
 
             <!-- CUSTOMER INFO -->
-            <table width="100%" style="font-size:11px; border:1px solid #000; margin-top:6px; border-collapse:collapse; font-weight: bold; ">
+            <!-- CUSTOMER + ORDER DETAILS TABLE -->
+            <table width="100%" style="font-size:11px; border:1px solid #000; margin-top:6px; border-collapse:collapse; font-weight: bold;background-color:#d3d3d3">
               <tr>
-                <td colspan="2" style="border:1px solid #000; padding:4px;">
-                  <strong>Sold To / العميل : &#160;</strong><br/>
+                <td colspan="6" style="border:1px solid #000; padding:4px;">
+                  <strong>Sold To / العميل : </strong>
                   <span t-field="o.partner_id.name"/>
                 </td>
               </tr>
               <tr>
-                <td style="border:1px solid #000; padding:4px;">
-                  <strong>VAT No : <span t-field="o.partner_id.vat"/>	&#160; :الرقم الضريبي</strong>&#160;&#160;
-
+                <td style="border:1px solid #000; padding:4px;" colspan="2">
+                  <strong>VAT No :</strong> <span t-field="o.partner_id.vat"/> &#160; :الرقم الضريبي
                 </td>
-                <td style="border:1px solid #000; padding:4px;">
-                  <strong>Invoice No: <span t-field="o.name"/>	 &#160;:رقم الفاتورة</strong>&#160;&#160;
-
-
-                  <span style="display:inline-block; width:20px;"></span>
-                  <strong>Invoice Date: <span t-field="o.invoice_date"/> &#160; : تاريخ الفاتورة  </strong>&#160;&#160;
-
-
-                  <strong>Delivery Date:</strong>
-                 <t t-if="o.delivery_date">
-                    <span style="display:inline-block; width:20px;"></span>
-                  <span t-esc="o.delivery_date"/>
-                </t>
-                <t t-elif="o.invoice_origin">
-                  <span t-esc="o.env['sale.order'].search([('name', '=', o.invoice_origin)], limit=1).commitment_date"/>
-                </t>
-
-
+                <td style="border:1px solid #000; padding:4px;" colspan="2">
+                  <strong>Invoice No:</strong> <span t-field="o.name"/> &#160; :رقم الفاتورة
+                </td>
+                <td style="border:1px solid #000; padding:4px;" colspan="2">
+                  <strong>Invoice Date:</strong> <span t-field="o.invoice_date"/> &#160; :تاريخ الفاتورة
                 </td>
               </tr>
-              <table width="100%" style="font-size:11px; border:1px solid #000; margin-top:6px; border-collapse:collapse; font-weight: bold; ">
               <tr>
-                <td colspan="2" style="border:1px solid #000; padding:4px;">
-
+                <td style="border:1px solid #000; padding:4px;" colspan="2">
                   <t t-if="o.po_number">
-                  <p><strong>P.O Number: <span t-esc="o.po_number"/> &#160;  :رقم أمر الشراء    </strong> </p>
-                </t>
-
-                  <span style="display:inline-block; min-width:40px;"></span>
-                  <strong>Terms / الشروط : &#160;</strong>
-                  <span style="display:inline-block; min-width:40px;"></span>
-                  <strong>Delivery Note No / رقم إيصال التسليم : &#160;</strong>
+                    <strong>P.O Number:</strong> <span t-esc="o.po_number"/> &#160; :رقم أمر الشراء
+                  </t>
+                </td>
+                <td style="border:1px solid #000; padding:4px;" colspan="2">
+                  <strong>Terms / الشروط :</strong>
+                </td>
+                <td style="border:1px solid #000; padding:4px;" colspan="2">
+                  <strong>Delivery Note No / رقم إيصال التسليم :</strong>
                 </td>
               </tr>
-                </table>
+              <tr>
+                <td style="border:1px solid #000; padding:4px;" colspan="6">
+                  <strong>Delivery Date:</strong>
+                  <t t-if="o.delivery_date">
+                    <span t-esc="o.delivery_date"/>
+                  </t>
+                  <t t-elif="o.invoice_origin">
+                    <span t-esc="o.env['sale.order'].search([('name', '=', o.invoice_origin)], limit=1).commitment_date"/>
+                  </t>
+                </td>
+              </tr>
             </table>
+
 
             <!-- INVOICE TABLE -->
             <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px; table-layout: fixed;">
@@ -108,7 +105,7 @@
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:10%;">S. RATE<br/>سعر الوحدة</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:6%;">DISC<br/>الخصم</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:10%;">AMOUNT<br/>المبلغ</th>
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:7%;">VAT%<br/>نسبة ضريبة القيمة المضافة</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold; width:9%;">VAT%<br/>نسبة ضريبة القيمة المضافة</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:10%;">VAT<br/>ضريبة</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:12%;">TOTAL PRICE<br/>سعر الإجمالي</th>
                 </tr>
@@ -202,12 +199,12 @@
                         <tr>
                           <td colspan="5" style="border-top:1px solid #000; padding:4px;">
                             <div style="display:flex; justify-content:space-between;">
-                              <div>
+                              <div >
                                 <strong>Bank Details :</strong><br/>
-                                <strong style="margin-left:45px">
+                                <div style="text-align:center">
                                 SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
                                 IBAN : SA29 1000 00 10768366000104
-                                 </strong>
+                                 </div>
                               </div>
                               <div style="text-align:right;">
                                 <strong>: التفاصيل المصرفية</strong>
