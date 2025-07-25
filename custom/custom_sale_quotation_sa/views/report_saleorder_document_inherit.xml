@@ -1,0 +1,29 @@
+<odoo>
+  <template id="report_saleorder_document_custom" inherit_id="sale.report_saleorder_document">
+
+    <!-- 🟡 Change Title -->
+    <xpath expr="//h2" position="replace">
+      <h2 style="text-align:center;">Quotation / عرض السعر</h2>
+    </xpath>
+
+    <!-- 🟡 Add Arabic + English PO Number -->
+    <xpath expr="//div[@class='row mt32 mb32']" position="after">
+      <div class="row mb16">
+        <div class="col-auto">
+          <strong>PO Number:</strong>
+          <span t-esc="o.client_order_ref or ''"/><br/>
+          <strong>رقم أمر الشراء:</strong>
+          <span t-esc="o.client_order_ref or ''"/>
+        </div>
+      </div>
+    </xpath>
+
+    <!-- 🟡 VAT Note -->
+    <xpath expr="//div[@class='mt32 mb32']" position="after">
+      <div class="text-center">
+        <p><strong>VAT is included @ 15% / تشمل ضريبة القيمة المضافة ١٥٪</strong></p>
+      </div>
+    </xpath>
+
+  </template>
+</odoo>

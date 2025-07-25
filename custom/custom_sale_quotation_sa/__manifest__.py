@@ -7,9 +7,8 @@
     'category': 'Sales',
     'depends': ['sale'],
     'data': [
-        'views/report_action_custom_quotation.xml',
-        'views/report_quotation_template.xml',
-        'views/report_action_override.xml',
+        'views/report_saleorder_document_inherit.xml',
+
     ],
     'installable': True,
     'application': True,  # ✅ Add this to show in Apps

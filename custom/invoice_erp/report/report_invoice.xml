@@ -7,7 +7,7 @@
 
           <div class="page">
             <!-- HEADER -->
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 2px solid #800000;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border: 2px solid #800000;">
 
         <!-- LEFT SIDE (ENGLISH) -->
         <div style="text-align: left; font-size: 13px;">
@@ -28,7 +28,8 @@
         <!-- RIGHT SIDE (ARABIC) -->
         <div style="text-align:right; direction: rtl; font-size: 13px;">
           <strong style="font-size: 16px; color: #800000;">شركة سمير شرف العتيبي التجارية</strong><br/>
-          <div style=" font-size:14px; margin-left:45px;" >
+          </div>
+          <div style=" font-size:14px; padding-left:45px;" >
           السجل: ٤٠٣٠٢١٦١٥٤<br/>
           رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
           مركز الأنوار، رقم محل ١٢ شارع البلدية<br/>
@@ -36,7 +37,7 @@
           الهاتف: ٠٥٣٦١٢٢٨٣٣<br/>
           البريد الإلكتروني: ssaoe.jeddah@gmail.com
           </div>
-        </div>
+
 
       </div>
 
@@ -97,7 +98,7 @@
             <table width="100%" style="font-size:11px; border-collapse:collapse; margin-top:6px; table-layout: fixed;">
               <thead>
                 <tr style="background-color:#f0f0f0;">
-                  <th style="border:1px solid #000; padding:4px; font-weight: bold;width:4%;">S.N<br/>مسلسل</th>
+                  <th style="border:1px solid #000; padding:4px; font-weight: bold;width:4%;">S.N<br/>م</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:15%;">ITEM<br/>الصنف</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:15%;">DESCRIPTION<br/>الوصف</th>
                   <th style="border:1px solid #000; padding:4px; font-weight: bold; width:6%;">QTY<br/>الكمية</th>
@@ -201,11 +202,12 @@
                             <div style="display:flex; justify-content:space-between;">
                               <div >
                                 <strong>Bank Details :</strong><br/>
+                                </div>
                                 <div style="text-align:center">
                                 SNB Beneficiary Name : Sameer Sharaf Al-Otaibi Trading Co.<br/>
                                 IBAN : SA29 1000 00 10768366000104
                                  </div>
-                              </div>
+
                               <div style="text-align:right;">
                                 <strong>: التفاصيل المصرفية</strong>
                               </div>
