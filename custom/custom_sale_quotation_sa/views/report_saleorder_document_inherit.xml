@@ -1,13 +1,13 @@
 <odoo>
   <template id="report_saleorder_document_custom" inherit_id="sale.report_saleorder_document">
 
-    <!-- 🟡 Change Title -->
-    <xpath expr="//h2" position="replace">
+    <!-- Replace Quotation Header -->
+    <xpath expr="//h2[t-if='o.state in (&#39;draft&#39;, &#39;sent&#39;)']" position="replace">
       <h2 style="text-align:center;">Quotation / عرض السعر</h2>
     </xpath>
 
-    <!-- 🟡 Add Arabic + English PO Number -->
-    <xpath expr="//div[@class='row mt32 mb32']" position="after">
+    <!-- Add PO Number Block after the customer block -->
+    <xpath expr="//div[contains(@class, 'row') and contains(@class, 'mt32') and contains(@class, 'mb32')]" position="after">
       <div class="row mb16">
         <div class="col-auto">
           <strong>PO Number:</strong>
@@ -18,8 +18,8 @@
       </div>
     </xpath>
 
-    <!-- 🟡 VAT Note -->
-    <xpath expr="//div[@class='mt32 mb32']" position="after">
+    <!-- Add VAT Info at Footer -->
+    <xpath expr="//div[contains(@class, 'mt32') and contains(@class, 'mb32')]" position="after">
       <div class="text-center">
         <p><strong>VAT is included @ 15% / تشمل ضريبة القيمة المضافة ١٥٪</strong></p>
       </div>
